@@ -7,10 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- EasyUI  css引用 -->
     <link rel="stylesheet" href="../node_modules/jquery-easyui/css/easyui.css">
+
+    <style>
+        /* 窗口标题位置 */
+        
+        .panel-title {
+            text-align: center;
+        }
+        /* 窗口边框颜色 */
+        
+        .window {
+            background: none;
+            border-color: none;
+            background-color: chartreuse;
+        }
+        /* 窗口主体颜色 */
+        
+        .panel-body {
+            background-color: cadetblue;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- 窗口模板 -->
+    <section id="dialog-model"></section>
 
+    <!-- EasyUI js引用 -->
+    <script src="../node_modules/jquery-easyui/js/jquery.min.js"></script>
+    <script src="../node_modules/jquery-easyui/js/jquery.easyui.min.js"></script>
+    <script src="../node_modules/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script>
+        $("#dialog-model").dialog({
+            title: "*对话框模板*",
+            // 右上角小按钮
+            collapsible: false, //定义是否显示可折叠按钮-----默认true
+            minimizable: false, //定义是否显示最小化按钮-----默认true
+            maximizable: false, //定义是否显示最大化按钮-----默认true
+            closable: true, //定义是否显示关闭按钮-----默认true
+            // 窗口状态
+            closed: false, //定义是否可以关闭窗口-----默认true
+            draggable: false, //定义是否能够拖拽窗口-----默认true
+            resizable: false, //定义是否能够改变窗口大小-----默认true
+            modal: true, //定义是否将窗体显示为模式化窗口-----默认true
+            // 窗口大小
+            width: 600,
+            height: 400,
+        })
+
+        // 窗口的开启与关闭
+        $("#dialog-model").window("close");
+        $("#dialog-model").window("open");
+    </script>
 </body>
 
 </html>

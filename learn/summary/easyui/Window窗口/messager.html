@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>消息窗口messager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- EasyUI  css引用 -->
+    <link rel="stylesheet" href="../node_modules/jquery-easyui/css/easyui.css">
+
+    <style>
+        /* 窗口标题位置 */
+        
+        .panel-title {
+            text-align: center;
+        }
+        /* 窗口边框颜色 */
+        
+        .window {
+            background: none;
+            border-color: none;
+            background-color: chartreuse;
+        }
+        /* 窗口主体颜色 */
+        
+        .panel-body {
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- EasyUI js引用 -->
+    <script src="../node_modules/jquery-easyui/js/jquery.min.js"></script>
+    <script src="../node_modules/jquery-easyui/js/jquery.easyui.min.js"></script>
+    <script src="../node_modules/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script>
+        // 001
+        $.messager.show({
+            showType: 'slide', //定义将如何显示该消息。 可用值有： null,slide,fade,show。 默认： slide。
+            showSpeed: 500, // 定义窗口显示的过度时间。 默认： 600 毫秒。
+            width: '250 px', //定义消息窗口的宽度。 默认： 250 px。
+            height: '100 px', //定义消息窗口的高度。 默认： 100 px。
+            title: '*show消息框*', // 在头部面板显示的标题文本。
+            msg: "你好", //显示的消息文本。
+            style: {}, //定义消息窗体的自定义样式。
+            timeout: 0, //如果定义为0， 消息窗体将不会自动关闭， 除非用户关闭他。 如果定义成非0的树， 消息窗体将在超时后自动关闭。 默认： 4 秒。
+        })
+    </script>
+
+</body>
+
+</html>
