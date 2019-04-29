@@ -1,4 +1,11 @@
 npm使用流程:
 1.npm init -y    ----创建一个 package.json文件,管理本地包(-y为快速创建)
                  ----如果您的package.json目录中有一个文件并且您运行npm install，则npm将查看该文件中列出的依赖项并使用语义版本控制下载最新版本
-2.npm install 包名 --save   ----将安装包依赖添加package.json目录中
+
+2.npm install 包名 --save   ----安装本地包( --save 将安装包依赖添加package.json目录中)
+3.npm uninstall 包名 --save   ----卸载本地包( --save 将安装包依赖从package.json目录中删除)
+4.npm update 包名    ----更新本地包
+
+5.npm install -g 包名 --save   ----安装全局包( --save 将安装包依赖添加package.json目录中)
+6.npm uninstall -g 包名 --save   ----卸载全局包( --save 将安装包依赖从package.json目录中删除)
+7.npm update -g 包名    ----更新全局包
