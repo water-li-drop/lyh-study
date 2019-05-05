@@ -3,3 +3,6 @@
   (1)HTML 指的是超文本标记语言 (Hyper Text Markup Language)
   (2)HTML 不是一种编程语言，而是一种标记语言 (markup language)
   (3)标记语言是一套标记标签 (markup tag)
+
+
+2.元素--标签--属性

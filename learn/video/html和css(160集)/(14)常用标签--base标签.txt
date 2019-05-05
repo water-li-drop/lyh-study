@@ -1,0 +1,9 @@
+base 可以设置整体链接的打开状态   
+base 写到  <head>  </head>  之间,把所有的连接 都默认添加 target="_blank"
+
+属性:
+    href----->规定页面中所有相对链接的基准 URL。
+    target----->在何处打开页面中所有的链接。
+基本语法:
+    <base href="http://www.w3school.com.cn/i/" />
+    <base target="_blank" />
