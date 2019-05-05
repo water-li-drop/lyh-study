@@ -27,6 +27,12 @@
         .panel-body {
             background-color: cadetblue;
         }
+        
+        .messager-icon {}
+        
+        .dialog-button {
+            background-color: burlywood;
+        }
     </style>
 </head>
 
@@ -38,16 +44,26 @@
     <script src="../node_modules/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
 
     <script>
-        // 001
+        // 001.show-----消息窗口
         $.messager.show({
-            showType: 'slide', //定义将如何显示该消息。 可用值有： null,slide,fade,show。 默认： slide。
-            showSpeed: 500, // 定义窗口显示的过度时间。 默认： 600 毫秒。
-            width: '250 px', //定义消息窗口的宽度。 默认： 250 px。
-            height: '100 px', //定义消息窗口的高度。 默认： 100 px。
-            title: '*show消息框*', // 在头部面板显示的标题文本。
-            msg: "你好", //显示的消息文本。
-            style: {}, //定义消息窗体的自定义样式。
-            timeout: 0, //如果定义为0， 消息窗体将不会自动关闭， 除非用户关闭他。 如果定义成非0的树， 消息窗体将在超时后自动关闭。 默认： 4 秒。
+                showType: 'slide', //定义将如何显示该消息。 可用值有： null,slide,fade,show。 默认： slide。
+                showSpeed: 500, // 定义窗口显示的过度时间。 默认： 600 毫秒。
+                width: '250 px', //定义消息窗口的宽度。 默认： 250 px。
+                height: '100 px', //定义消息窗口的高度。 默认： 100 px。
+                title: '*show消息框*', // 在头部面板显示的标题文本。
+                msg: "你好", //显示的消息文本。
+                style: {}, //定义消息窗体的自定义样式。
+                timeout: 500, //如果定义为0， 消息窗体将不会自动关闭， 除非用户关闭他。 如果定义成非0的树， 消息窗体将在超时后自动关闭。 默认： 4 秒。
+            })
+            // 002.alert-----警告窗口
+        $.messager.alert({
+            title: '警告窗口', //在头部面板显示的标题文本。
+            msg: '警告!警告!', //显示的消息文本。
+            icon: 'warning', //显示的图标图像。 可用值有： error, question,info,warning。
+            fn: function() {
+                    alert("你错了!!!");
+                } //在窗口关闭的时候触发该回调函数。
+
         })
     </script>
 
