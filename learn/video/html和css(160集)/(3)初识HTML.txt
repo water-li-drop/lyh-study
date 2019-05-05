@@ -1,0 +1,5 @@
+1.HTML（英文Hyper Text Markup Language的缩写）中文译为“超文本标签语言”。是用来描述网页的一种语言。
+  所谓超文本，因为它可以加入图片、声音、动画、多媒体等内容，不仅如此，它还可以从一个文件跳转到另一个文件，与世界各地主机的文件连接。
+  (1)HTML 指的是超文本标记语言 (Hyper Text Markup Language)
+  (2)HTML 不是一种编程语言，而是一种标记语言 (markup language)
+  (3)标记语言是一套标记标签 (markup tag)
