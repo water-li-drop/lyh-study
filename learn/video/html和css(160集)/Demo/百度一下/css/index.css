@@ -81,6 +81,11 @@ nav>section:nth-child(2) {
     text-decoration: none;
 }
 
+
+/* .user-name:hover~.ul-user {
+    display: block;
+} */
+
 .ul-user,
 .ul-sz,
 .ul-gdcp {
