@@ -113,6 +113,25 @@
         div:hover img:nth-child(6) {
             transform: rotate(360deg);
         }
+        
+        a {
+            perspective: 5000;
+        }
+        
+        a img {
+            transition: all 5s ease-in 0s;
+        }
+        
+        a img:hover {
+            /* transform:rotateX(180deg); */
+            /* transform:rotateY(180deg); */
+            /* transform:rotateZ(180deg); */
+            transform: rotateX(45deg) rotateY(180deg) rotateZ(90deg) skew(0, 10deg);
+        }
+        
+        p:nth-of-type(2) {
+            text-shadow: 5px 5px 3px #faf;
+        }
     </style>
 
 
@@ -144,6 +163,10 @@
         <img src="http://upload.semidata.info/new.eefocus.com/article/image/2018/01/19/5a6198ad40b7c.jpg" alt="">
         <img src="http://upload.semidata.info/new.eefocus.com/article/image/2018/01/19/5a6198ad40b7c.jpg" alt="">
     </div>
+    <a href="img"><img src="http://hbimg.b0.upaiyun.com/2f082db014c1b7c04fd75f84e3b37db44750f88b1bb2e-cAdOYC_fw658" alt=""></a>
+
+    <p>在E元素内部的开始位置和结束位创建一个元素，该元素为行内元素，在E元素内部的开始位置和结束位创建一个元素，该元素为行内元素，在E元素内部的开始位置和结束位创建一个元素，该元素为行内元素，</p>
+
 </body>
 
 </html>

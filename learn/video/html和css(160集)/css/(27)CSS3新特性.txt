@@ -391,9 +391,6 @@
         (2)rotateY()
 
         沿着y轴进行旋转
-
-
-
             img {
             transition:all 0.5s ease 0s;
             }
@@ -430,7 +427,6 @@
 
 perspective 一般作为一个属性，设置给父元素，作用于所有3D转换的子元素
 
-理解透视距离原理：
 
 
 
@@ -552,7 +548,7 @@ backface-visibility 属性定义当元素不面向屏幕时是否可见。
 
 
 
-动画(CSS3) animation
+10.动画(CSS3) animation
 
 动画是CSS3中具有颠覆性的特征之一，可通过设置多个节点来精确控制一个或一组动画，常用来实现复杂的动画效果。
 
@@ -667,14 +663,10 @@ http://m.ctrip.com/html5/   携程网手机端地址
   nowrap      	默认值。规定灵活的项目不拆行或不拆列。  不换行，则 收缩（压缩） 显示  强制一行内显示
   wrap        	规定灵活的项目在必要的时候拆行或拆列。                     
   wrap-reverse	规定灵活的项目在必要的时候拆行或拆列，但是以相反的顺序。            
-              	                                        
-              	                                        
 
 6、flex-flow是flex-direction、flex-wrap的简写形式
 
     flex-flow: flex-direction  flex-wrap;  
-
-
 
 白话记：    flex-flow: 排列方向   换不换行; 
 
@@ -724,8 +716,6 @@ align-content是针对flex容器里面多轴(多行)的情况,align-items是针�
 以后我们可以给我们的文字添加阴影效果了  Shadow  影子  
 
     text-shadow:水平位置 垂直位置 模糊距离 阴影颜色;
-
-
 
 1. 前两项是必须写的。  后两项可以选写。
 

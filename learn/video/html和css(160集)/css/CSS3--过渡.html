@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div:nth-of-type(1) {
+            width: 100px;
+            height: 100px;
+            background-color: burlywood;
+            transition: all 2s ease 0s;
+        }
+        
+        div:nth-of-type(1):hover {
+            /* width: 200px;
+            height: 200px; */
+            background-color: aqua;
+            /* transform: translate(50%, 50%);
+            transform: scale(0.8, 1);
+            transform: rotateX(45deg) rotateY(180deg) rotateZ(90deg) skew(0, 10deg); */
+            transform: translate(50%, 50%) scale(0.5, 0.5) rotateX(45deg) rotateY(180deg) rotateZ(90deg) skew(0, 10deg);
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+
+</body>
+
+</html>
