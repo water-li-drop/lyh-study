@@ -1,0 +1,123 @@
+/* 页面整体 */
+
+main {
+    background-image: url("https://ss2.bdstatic.com/lfoZeXSm1A5BphGlnYG/skin/813.jpg?2");
+    background-repeat: no-repeat;
+}
+
+
+/* 头部 */
+
+header {
+    height: 200px;
+    background: #fafa;
+}
+
+
+/* 导航栏 */
+
+nav {
+    height: 32px;
+    background-color: #8E97A4;
+    font-family: Arial;
+    color: #fff;
+    line-height: 32px;
+}
+
+nav>section>ul {
+    margin-left: 20px;
+}
+
+nav>section>ul li {
+    padding: 0 10px;
+    color: #fff;
+}
+
+nav>section>ul a {
+    text-decoration: underline;
+}
+
+
+/* 导航栏左侧 */
+
+nav>section:nth-child(1) {
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+nav>section:nth-child(1)>section span {
+    margin-left: 5px;
+}
+
+.img-tq {
+    background-image: url("https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/weather/aladdin/png_18/a1.png");
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 5px;
+}
+
+.kqzl-text {
+    color: #BADC00;
+}
+
+.kqzl-num::after {
+    content: "|";
+    position: relative;
+    left: 10px;
+}
+
+
+/* 导航栏右侧 */
+
+nav>section:nth-child(2) {
+    font-size: 13px;
+    position: relative;
+}
+
+.gdcp {
+    background-color: #398bfb;
+    text-decoration: none;
+}
+
+.ul-user,
+.ul-sz,
+.ul-gdcp {
+    /* display: none; */
+    background-color: #fff;
+    position: absolute;
+}
+
+.ul-user {
+    left: 315px;
+}
+
+.ul-sz {
+    left: 396px;
+}
+
+.ul-gdcp {
+    width: 70px;
+    left: 451px;
+}
+
+.ul-user::before,
+.ul-sz::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 25px;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid #fff;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+
+.ul-user a,
+.ul-sz a,
+.ul-gdcp a {
+    color: #000;
+    text-decoration: none;
+}
