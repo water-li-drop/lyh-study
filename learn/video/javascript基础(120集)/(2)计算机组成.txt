@@ -1,0 +1,10 @@
+软件
+
+    - 应用软件：浏览器(Chrome/IE/Firefox)、QQ、Sublime、Word
+    - 系统软件：Windows、Linux、mac OSX
+
+硬件
+
+    - 三大件：CPU、内存、硬盘    -- 主板
+    - 输入设备：鼠标、键盘、手写板、摄像头等
+    - 输出设备：显示器、打印机、投影仪等

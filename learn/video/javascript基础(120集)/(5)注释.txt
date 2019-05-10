@@ -1,0 +1,16 @@
+单行注释
+
+    用来描述下面一个或多行代码的作用
+
+        // 这是一个变量
+        var name = 'hm';
+
+多行注释
+
+    用来注释多条代码
+
+        /*
+        var age = 18;
+        var name = 'zs';
+        console.log(name, age);
+        */
