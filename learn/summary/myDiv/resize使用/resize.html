@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        div {
+            border: 2px solid;
+            padding: 10px 40px;
+            width: 300px;
+            resize: both;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="ceshi">
+        寒假快乐就好看了会尽快回家快乐寒假快乐就好看
+    </div>
+
+
+    <script src="../../easyui/node_modules/jquery-easyui/js/jquery.min.js"></script>
+    <script>
+        $("#ceshi").resize(function(e) {
+            debugger;
+            console.log(e);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+1.jQuery 事件 - resize() 方法
+    $(window).resize(function() {
+        $('span').text(x+=1);
+    });
+
+    定义和用法
+        当调整浏览器窗口的大小时，发生 resize 事件。
+        resize() 方法触发 resize 事件，或规定当发生 resize 事件时运行的函数。
+
+2.CSS3 resize 属性
+    resize属性指定一个元素是否是由用户调整大小的。
+
+    注意：resize属性适用于计算其他元素的溢出值是不是"visible"。
+
+    默认值：	none
+    继承：	no
+    版本：	CSS3
+    JavaScript 语法：	object.style.resize="both"
+
+    语法
+    resize: none|both|horizontal|vertical:
+
+    值	描述
+    none	用户无法调整元素的尺寸。
+    both	用户可调整元素的高度和宽度。
+    horizontal	用户可调整元素的宽度。
+    vertical	用户可调整元素的高度。
+
+
+3.js添加window窗口大小变动resize事件(只能添加给window对象)；
+    window.addEventListener("resize", function(e) {
+                debugger;
+                console.log(e);
+            });
