@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- EasyUI  css引用 -->
+    <link rel="stylesheet" href="../node_modules/jquery-easyui/css/easyui.css">
+
+</head>
+
+<body>
+    <input type="text" name="" id="combobox_test">
+
+
+
+    <!-- EasyUI js引用 -->
+    <script src="../node_modules/jquery-easyui/js/jquery.min.js"></script>
+    <script src="../node_modules/jquery-easyui/js/jquery.easyui.min.js"></script>
+    <script src="../node_modules/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script>
+        $("#combobox_test").combobox({
+            valueField: "id", //string 基础数据值名称绑定到该下拉列表框。 value 
+            textField: "text", //string 基础数据字段名称绑定到该下拉列表框。 text 
+            data: [{ //数据列表加载。array
+                id: '01',
+                text: 'Java',
+                // selected: true
+            }, {
+                id: '02',
+                text: 'Perl'
+            }, {
+                id: '03',
+                text: 'Ruby'
+            }],
+
+
+            width: "200", // number 组件的宽度。 auto 
+            height: "20", // number 组件的高度。 22 
+            panelWidth: "200", // number 下拉面板宽度。 null 
+            panelHeight: "auto", // number 下拉面板高度。 200 
+            multiple: false, // boolean 定义是否支持多选。 false 
+            selectOnNavigation: false, // boolean 定义是否允许使用键盘导航来选择项目。（该属性自1.3.3版开始可用） true 
+            separator: ",", //string 在多选的时候使用何种分隔符进行分割。,
+            editable: false, // boolean 定义用户是否可以直接输入文本到字段中。 true
+            // disabled: true, // boolean 设置启用 / 禁用字段。 false
+            // readonly: true, // boolean 设置该字段为读写 / 只读模式。（ 该属性自1 .3 .3 版开始可用） false
+            value: '03', //string 字段的默认值。 
+
+            // 事件
+            onSelect: function() {
+                // record 在用户选择列表项的时候触发。 
+            },
+            onUnselect: function() {
+                // record 在用户取消选择列表项的时候触发。 
+            }
+        });
+
+        // 方法
+        $("#combobox_test").combobox("options"); //none 返回属性对象。
+        $("#combobox_test").combobox("getData"); //none 返回加载数据。
+        $("#combobox_test").combobox("loadData", data); //data 读取本地列表数据。
+
+        $("#combobox_test").combobox("reload"); //url 请求远程列表数据。 通过 'url'
+        $("#combobox_test").combobox("setValues", ['001', '002']); //values 设置下拉列表框值数组。
+        $("#combobox_test").combobox("setValue", '001'); //value 设置下拉列表框的值。
+
+        $("#combobox_test").combobox("clear"); //none 清除下拉列表框的值。
+        $("#combobox_test").combobox("select", value); //value 选择指定项。
+        $("#combobox_test").combobox("unselect", value); //value 取消选择指定项。
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- EasyUI  css引用 -->
+    <link rel="stylesheet" href="../node_modules/jquery-easyui/css/easyui.css">
+
+</head>
+
+<body>
+    <input name="" id="datebox_test">
+
+
+
+    <!-- EasyUI js引用 -->
+    <script src="../node_modules/jquery-easyui/js/jquery.min.js"></script>
+    <script src="../node_modules/jquery-easyui/js/jquery.easyui.min.js"></script>
+    <script src="../node_modules/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script>
+        $("#datebox_test").datebox({
+            panelWidth: "200", //number 下拉日历面板宽度。 180 
+            panelHeight: "300", // number 下拉日历面板高度。 auto 
+            currentText: "今天", //string 显示当天按钮。 Today 
+            closeText: "关闭", //string 显示关闭按钮。 Close 
+            okText: "Ok", //string 显示OK按钮。 Ok 
+            disabled: false, //boolean 该属性值为true时禁用该字段。 false 
+
+
+
+
+            onSelect: function(date) { //date 在用户选择了一个日期的时候触发。 
+                alert(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
+            }
+        });
+        // 方法
+
+        // $("#datebox_test").datebox("setValue", '2018-09-08'); //value 设置下拉列表框的值。
+
+
+        // formatter function 该函数用于格式化日期，它有一个'date'参数并且会返回一个字符串类型的值。下面的一个例子展示了如何重写默认的formatter函数。
+
+        // $.fn.datebox.defaults.formatter = function(date) {
+        //     var y = date.getFullYear();
+        //     var m = date.getMonth() + 1;
+        //     var d = date.getDate();
+        //     return m + '-' + d + '-' + y;
+        // }
+    </script>
+</body>
+
+</html>
