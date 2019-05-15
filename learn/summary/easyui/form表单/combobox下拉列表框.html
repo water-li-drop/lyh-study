@@ -2,12 +2,49 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>combobox</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- EasyUI  css引用 -->
     <link rel="stylesheet" href="../node_modules/jquery-easyui/css/easyui.css">
 
+    <style>
+        /* 边框颜色 */
+        
+        .textbox {
+            border: 1px solid rgb(30, 236, 123);
+        }
+        /* 输入框背景色 */
+        
+        .textbox .textbox-text {
+            background-color: aqua;
+        }
+        /* 下拉按钮箭头 */
+        
+        .combo-arrow {
+            background-color: cadetblue;
+            background-image: url(../images/combo_arrow.png) no-repeat center center;
+        }
+        /* 下拉面板 */
+        /* 1.对齐方式 */
+        
+        .panel {
+            text-align: right;
+        }
+        /* 2.字体背景色 */
+        
+        .panel-body {
+            background-color: burlywood;
+            font-size: 14px;
+            color: coral;
+        }
+        /* 选中元素 */
+        
+        .combobox-item-selected {
+            background-color: #7334e9;
+            color: #f0eaea;
+        }
+    </style>
 </head>
 
 <body>
