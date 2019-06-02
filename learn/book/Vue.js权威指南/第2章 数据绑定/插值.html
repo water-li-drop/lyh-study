@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>插值</title>
+    <meta charset="UTF-8">
+</head>
+<span id="name">姓名：{{text.text1}},姓名：{{*(text.text2)}}</span>
+
+<body>
+</body>
+<script src="../vue/node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#name',
+        data: {
+            text: {
+                text1: '李子木1',
+                text2: '李子木2',
+                text3: '李子木3',
+                text4: '李子木4'
+            }
+        }
+
+
+    })
+</script>
+
+
+</html>
