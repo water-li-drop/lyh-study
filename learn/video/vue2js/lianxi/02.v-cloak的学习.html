@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- v-cloak能够解决插值表达式的闪烁 -->
+        <p v-cloak>qqqqqqqqqq{{msg}}ppppppppppppp</p>
+        <span v-text="msg"></span>
+        <!-- 默认v-text没有闪烁问题 -->
+        <div v-html="msg2"></div>
+
+        <!-- v-bind用于绑定属性 ，可以简写为：-->
+        <input type="button" value="按钮" v-bind:title="mytitle+'牛号'">
+        <input type="button" value="按钮" :title="mytitle+'牛号1'">
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        var appVue = new Vue({
+            el: '#app',
+            data: {
+                msg: '123',
+                msg2: '<h1>nihao</h1>',
+                mytitle: 'anniu'
+            }
+        })
+    </script>
+</body>
+
+</html>
