@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .inner {
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="inner" @click="div_click">
+            <input type="button" value="戳他！！！" v-on:click.stop="but_click">
+        </div>
+        <a href="www.baidu.com" @click.prevent='a_click'>haha</a>
+        <div class="inner" @click.capture="div_click">
+            <input type="button" value="戳他！！！" v-on:click.stop="but_click">
+        </div>
+    </div>
+
+
+    <script src="vue.js"></script>
+    <script>
+        var csApp = new Vue({
+            el: "#app",
+            data: {},
+            methods: {
+                div_click() {
+                    console.log("div点击！！！");
+                },
+                but_click() {
+                    console.log("btn点击！！！");
+                },
+                a_click() {
+                    alert("a点击！！！");
+                },
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

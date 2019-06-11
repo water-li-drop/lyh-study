@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>对象的创建</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <script>
+        // 对象创建
+        // 1.对象直接量
+        var obj001 = {};
+        // 2.通过new创建
+        var obj002 = new Object();
+        // 3.通过Object.create(对象);
+        var obj003 = Object.create(null);
+        var obj004 = Object.create({
+            a: 2,
+            b: 3
+        });
+
+        console.log(obj001);
+        console.log(obj002);
+        console.log(obj003);
+        console.log(obj004);
+    </script>
+</body>
+
+</html>

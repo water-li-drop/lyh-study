@@ -23,8 +23,8 @@
         <div v-html="msg2"></div>
 
         <!-- v-bind用于绑定属性 ，可以简写为：-->
-        <input type="button" value="按钮" v-bind:title="mytitle+'牛号'">
-        <input type="button" value="按钮" :title="mytitle+'牛号1'">
+        <input type="button" value="按钮" v-bind:title="mytitle+'牛号'" v-on:mouseover="show">
+        <input type="button" value="按钮" :title="mytitle+'牛号1'" v-on:click="show">
     </div>
 
     <script src="vue.js"></script>
@@ -35,6 +35,11 @@
                 msg: '123',
                 msg2: '<h1>nihao</h1>',
                 mytitle: 'anniu'
+            },
+            methods: {
+                show: function() {
+                    alert("hello!");
+                }
             }
         })
     </script>

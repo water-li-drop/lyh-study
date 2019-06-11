@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+
+    <div class="ceshi">
+
+        <button id="lql" v-on:click="start">浪起来</button>
+        <button id="dd" @click="pause">低调</button>
+        <h2 v-text="msg"></h2>
+    </div>
+
+
+    <script src="vue.js"></script>
+
+    <script>
+        var ceshiVue = new Vue({
+            el: '.ceshi',
+            data: {
+                msg: '浪起来，一起摇摆！！！',
+                time: null
+            },
+            methods: {
+                start() {
+                    var _this = this;
+                    if (_this.time) {
+
+                    } else {
+                        _this.time = setInterval(function() {
+                            var str_s = _this.msg.substring(0, 1);
+                            var str_e = _this.msg.substring(1);
+                            _this.msg = str_e + str_s;
+                        }, 100);
+                    }
+                },
+                pause() {
+                    clearInterval(this.time);
+                    this.time = null;
+                }
+            }
+
+        });
+    </script>
+
+
+</body>
+
+</html>
