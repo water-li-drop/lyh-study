@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>箭头函数</title>
+</head>
+
+
+
+
+<body>
+
+    <script>
+        // 1.基本示例
+        var func = v => v;
+        console.log(func(3));
+        // 2.参数个数
+        // (1)无参数
+        var func2 = () => 100;
+        console.log(func2());
+        // (2)多个参数
+        var func3 = (num1, num2) => {
+            return num1 - num2
+        };
+        console.log(func3(33, 99));
+    </script>
+
+</body>
+
+</html>
