@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>简易计算器</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="text" v-model="n1" number>
+        <select v-model="ysf">
+            <option value="+" selected>+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" v-model="n2" number>
+        <input type="button" value="=" @click="yunsuan">
+        <input type="text" v-model="result" number>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                n1: 0,
+                ysf: "+",
+                n2: 0,
+                result: 0
+
+            },
+            methods: {
+                yunsuan() {
+                    debugger;
+                    switch (this.ysf) {
+                        case '+':
+                            this.result = Number(this.n1) + Number(this.n2);
+                            break;
+                        case '-':
+                            this.result = Number(this.n1) - Number(this.n2);
+                            break;
+                        case '*':
+                            this.result = Number(this.n1) * Number(this.n2);
+                            break;
+                        case '/':
+                            this.result = Number(this.n1) / Number(this.n2);
+                            break;
+                    }
+
+                }
+            }
+
+
+        })
+    </script>
+
+</body>
+
+</html>
