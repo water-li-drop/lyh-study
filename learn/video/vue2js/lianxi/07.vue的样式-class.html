@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <style>
+        .red {
+            color: brown;
+        }
+        
+        .thin {
+            font-weight: 700;
+        }
+        
+        .active {
+            letter-spacing: 0.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="red thin active">原始class</div>
+        <div :class="[ 'red', 'thin',flag?'active':'']">vue绑定1class</div>
+        <div :class="[ 'red', 'thin',{'active':flag}]">vue绑定2class</div>
+        <div :class="{red:true,thin:false}">vue绑定3class</div>
+    </div>
+
+
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                flag: false
+            }
+        });
+    </script>
+</body>
+
+</html>
