@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+
+
+        <div>
+            <input type="text" name="" id="" v-model="id">
+            <input type="text" name="" id="" v-model="name">
+            <input type="button" value="添加" @click="addFunc">
+        </div>
+        <p v-for="user in list"><input type="checkbox" name="" id="">{{user.name}}</p>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                list: [{
+                    id: 1,
+                    name: 'lyh1',
+                    sex: 'nan1'
+                }, {
+                    id: 2,
+                    name: 'lyh2',
+                    sex: 'nan2'
+                }]
+            },
+            methods: {
+                addFunc() {
+                    var obj = {}
+                    obj.name = this.name;
+                    obj.id = this.id;
+                    this.list.push(obj);
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

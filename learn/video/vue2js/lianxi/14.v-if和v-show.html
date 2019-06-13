@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+
+        <button @click="dianji">点击</button>
+        <p v-if="flag">v-if的使用</p>
+        <!-- v-if是移除元素 --》当元素可能永远不会被显示出来-->
+        <p v-show="flag">v-if的使用</p>
+        <!-- v-show是display：none元素 --》当元素频繁切换时-->
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                flag: true
+            },
+            methods: {
+                dianji() {
+                    if (this.flag) {
+                        this.flag = false;
+                    } else {
+                        this.flag = true;
+                    }
+
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
