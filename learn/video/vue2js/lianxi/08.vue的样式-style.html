@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+
+        <div :style="{color:'red','font-size':'90px'}">
+            heheahha
+        </div>
+        <div :style="[num,num2]">
+            heheahha
+        </div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: {
+                    color: 'red'
+                },
+                num2: {
+                    'font-size': '50px'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

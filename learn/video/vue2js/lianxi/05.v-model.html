@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>v-model</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <input type="text" name="" id="hello" :value="msg">
+        <input type="text" name="" id="hello" v-model="msg">
+    </div>
+
+
+    <script src="vue.js"></script>
+    <script>
+        var s = new Vue({
+            el: "#app",
+            data: {
+                msg: "nihao"
+            },
+            methods: {
+
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
