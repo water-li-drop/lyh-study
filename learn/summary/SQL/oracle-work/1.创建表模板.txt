@@ -1,0 +1,20 @@
+-- Create table
+create table PRJ_IE_FR_INFO
+(
+  item_code                 VARCHAR2(32) not null,
+  item_name                 VARCHAR2(500),
+  sanct_remove_invest       NUMBER(12,4),
+  pre_version               VARCHAR2(200),
+  appraise_date             VARCHAR2(20),
+  appraise_num              VARCHAR2(200)
+
+);
+-- Add comments to the table 
+comment on table PRJ_IE_FR_INFO               is '项目前期项目可研信息、存储16类专项项目的可研阶段信息，包括可研规模、可研总投资、可研评审及批复文号等信息';
+-- Add comments to the columns 
+comment on column PRJ_IE_FR_INFO.item_code    is '项目编码';
+comment on column PRJ_IE_FR_INFO.item_name    is '项目名称';
+comment on column PRJ_IE_FR_INFO.item_type    is '项目类别'; 
+  
+-- Create/Recreate indexes 
+create priamny key PK_PRJ_IE_FR_INFO on PRJ_IE_FR_INFO (ITEM_CODE);
