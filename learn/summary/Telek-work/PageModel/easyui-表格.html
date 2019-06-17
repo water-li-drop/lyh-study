@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>easyui--表格</title>
+    <!-- EasyUI  css引用 -->
+    <link rel="stylesheet" href="../../easyui/node_modules/jquery-easyui/css/easyui.css">
+
+    <style>
+        /* easyui表格样式 */
+        /* 表格边框 */
+        
+        #table-div .panel-body {
+            border-color: #317067;
+        }
+        /* ---表头--- */
+        /* 1.表头颜色 */
+        
+        #table-div .datagrid-htable {
+            background-color: #317067;
+            color: #ffffff;
+        }
+        /* 2.表头鼠标悬浮颜色 */
+        
+        #table-div .datagrid-header td.datagrid-header-over {
+            background-color: #317067;
+            color: #ffffff;
+            cursor: default;
+        }
+        /* -----表格数据----- */
+        /* 1.表格数据样式 */
+        /* #table-div .datagrid-row {
+            background-color: #F2F2F2;
+            color: #000000;
+        } */
+        /* 2.表格数据鼠标悬浮 */
+        /* #table-div .datagrid-row-over {
+            background-color: #317067;
+            color: #ffffff;
+        } */
+        /* 3.表格数据点击 */
+        /* #table-div .datagrid-row-selected {
+            background: #ffe48d;
+            color: #000000;
+        } */
+        /* 4.数据单元格边框样式 */
+        /* #table-div .datagrid-body td {
+            border-style: solid;
+        } */
+        /* 分页 */
+        /* #table-div .datagrid-pager {
+            border-color: #317067;
+            background-color: #317067;
+            color: #ffffff;
+        } */
+    </style>
+
+
+
+</head>
+
+
+
+
+
+<body>
+    <section style="width:800px;height:400px;">
+        <div id="table-div" class="easyui-panel" style="width:100%;height:100%;border:hidden;">
+            <table id="tableId" style="width:100%;height:100%;"></table>
+        </div>
+    </section>
+
+    <!-- EasyUI js引用 -->
+    <script src="../../easyui/node_modules/jquery-easyui/js/jquery.min.js "></script>
+    <script src="../../easyui/node_modules/jquery-easyui/js/jquery.easyui.min.js "></script>
+    <script src="../../easyui/node_modules/jquery-easyui/locale/easyui-lang-zh_CN.js "></script>
+
+    <script>
+        // 初始化
+        $("#tableId").datagrid({
+
+            columns: [
+                [{
+                    field: 'id',
+                    title: 'ID',
+                    width: 100
+                }, {
+                    field: 'name',
+                    title: '名称',
+                    width: 100
+                }, {
+                    field: 'price1',
+                    title: '价格',
+                    width: 100,
+                    align: 'right'
+                }, {
+                    field: 'price2',
+                    title: '价格',
+                    width: 100,
+                    align: 'right'
+                }, {
+                    field: 'price3',
+                    title: '价格',
+                    width: 200,
+                    align: 'right'
+                }, {
+                    field: 'price4',
+                    title: '价格',
+                    width: 200,
+                    align: 'right'
+                }, {
+                    field: 'price5',
+                    title: '价格',
+                    width: 100,
+                    align: 'right'
+                }]
+            ],
+            data: [{
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, {
+                id: 1,
+                name: 'liyuhan',
+                price1: 100,
+                price2: 100,
+                price3: 100,
+                price4: 100,
+                price5: 100,
+            }, ],
+
+            //	冻结列
+            frozenColumns: [
+                [{
+                    field: 'id',
+                    title: 'ID',
+                    width: 100
+                }]
+            ],
+            fitColumns: true,
+
+            // 分页设置
+            pagination: true
+        });
+        // 分页
+        var p = $("#tableId").datagrid('getPager');
+        $(p).pagination({
+            showPageList: false,
+            pageList: [10, 20, 50, 100],
+            pageSize: 10,
+            beforePageText: '第',
+            afterPageText: '页,共 {pages} 页',
+            displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
+            onSelectPage: function(pageNumber, pageSize) {
+                debugger;
+                alert(pageNumber + "," + pageSize);
+            }
+        });
+    </script>
+</body>
+
+</html>
