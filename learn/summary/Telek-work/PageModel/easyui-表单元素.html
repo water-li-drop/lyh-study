@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>easyui--按钮</title>
+    <!-- EasyUI  css引用 -->
+    <link rel="stylesheet" href="../../easyui/node_modules/jquery-easyui/css/easyui.css">
+
+    <style>
+        .f-left {
+            float: left;
+        }
+        
+        .clearfix:after {
+            visibility: hidden;
+            clear: both;
+            display: block;
+            content: ".";
+            height: 0
+        }
+        
+        .clearfix {
+            *zoom: 1
+        }
+        
+        .form-div {
+            margin: 5px;
+        }
+        
+        .input-div {
+            margin: 5px;
+            font-size: 12px;
+            margin-left: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section>
+        <div class="form-div clearfix">
+            <div class="input-div f-left">
+                <label for="">文本框:</label>
+                <input type="text" id="textbox_input">
+            </div>
+            <div class="input-div f-left">
+                <label for="">日期框:</label>
+                <input type="text" id="datebox_input">
+            </div>
+            <div class="input-div f-left">
+                <label for="">下拉框:</label>
+                <input type="text" id="combobox_input">
+            </div>
+        </div>
+    </section>
+    <!-- EasyUI js引用 -->
+    <script src="../../easyui/node_modules/jquery-easyui/js/jquery.min.js "></script>
+    <script src="../../easyui/node_modules/jquery-easyui/js/jquery.easyui.min.js "></script>
+    <script src="../../easyui/node_modules/jquery-easyui/locale/easyui-lang-zh_CN.js "></script>
+    <script>
+        $("#textbox_input").textbox({});
+        $("#datebox_input").datebox({
+            editable: false
+        });
+        $("#combobox_input").combobox({
+            editable: false,
+            panelHeight: 'auto',
+            valueField: 'id',
+            textField: 'value',
+            data: [{
+                id: 'java',
+                value: 'Java_value'
+            }, {
+                id: 'perl',
+                value: 'Perl_value'
+            }, {
+                id: 'ruby',
+                value: 'Ruby_value'
+            }]
+
+        });
+    </script>
+</body>
+
+</html>

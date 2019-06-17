@@ -8,22 +8,61 @@
     <title>easyui--按钮</title>
     <!-- EasyUI  css引用 -->
     <link rel="stylesheet" href="../../easyui/node_modules/jquery-easyui/css/easyui.css">
+
+    <style>
+        .f-left {
+            float: left;
+        }
+        
+        .clearfix:after {
+            visibility: hidden;
+            clear: both;
+            display: block;
+            content: ".";
+            height: 0
+        }
+        
+        .clearfix {
+            *zoom: 1
+        }
+        
+        .btn-div {
+            margin: 5px;
+            display: inline-block;
+        }
+        
+        .btn-base-style {
+            width: 150px;
+            height: 52px;
+            color: #ffffff;
+            cursor: pointer;
+            border-radius: 10%;
+            margin-left: 10px;
+        }
+        
+        .btn-green-color {
+            background-color: #317067;
+        }
+        
+        .btn-yellow-color {
+            background-color: #ffa200;
+        }
+        
+        .btn-gray-color {
+            background-color: #999999;
+        }
+    </style>
+
 </head>
 
 <body>
     <section>
-        <div>
-
-            <button></button>
+        <div class="btn-div clearfix">
+            <div class="f-left btn-base-style btn-green-color">提交</div>
+            <div class="f-left btn-base-style btn-yellow-color">保存</div>
+            <div class="f-left btn-base-style btn-gray-color">预览</div>
         </div>
-
-
     </section>
-
-
-
-
-
     <!-- EasyUI js引用 -->
     <script src="../../easyui/node_modules/jquery-easyui/js/jquery.min.js "></script>
     <script src="../../easyui/node_modules/jquery-easyui/js/jquery.easyui.min.js "></script>
