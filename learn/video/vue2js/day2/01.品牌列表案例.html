@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <div>
+                <label for="">ID:</label>
+                <input type="text" name="" id="" v-model="ID">
+            </div>
+            <div>
+                <label for="">NAME:</label>
+                <input type="text" name="" id="" v-model="NAME">
+
+            </div>
+            <div>
+                <button @click='add'>添加</button>
+                <input type="text" name="" id="" v-model="keyword">
+                <button>查询</button>
+            </div>
+
+        </div>
+        <div>
+            <table border='1' cellspacing='0' cellpadding='0'>
+                <thead>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>TIME</th>
+                    <th>操作</th>
+                </thead>
+                <tbody>
+
+                    <tr v-for='item in sreach(keyword)'>
+                        <td>{{item.ID}}</td>
+                        <td>{{item.NAME}}</td>
+                        <td>{{item.TIME}}</td>
+                        <td><a href="#" @click.prevent="del(item.ID)">{{item.OP}}</a></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+
+
+
+
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                    ID: 1,
+                    NAME: "li",
+                    TIME: "",
+                    OP: "操作"
+                }],
+                ID: "",
+                NAME: "",
+                TIME: "",
+                keyword
+            },
+            methods: {
+                add() {
+                    var obj = {};
+                    obj.ID = this.ID;
+                    obj.NAME = this.NAME;
+                    obj.TIME = this.TIME;
+                    obj.OP = "操作";
+                    this.list.push(obj);
+                    this.ID = this.NAME = this.TIME = "";
+                },
+                del(id) {
+                    this.list.some((item, i) => {
+                        if (item.ID == id) {
+                            this.list.splice(i, 1);
+                            return true;
+                        }
+                    })
+                },
+                search(keyword) {
+                    var arr = [];
+                    this.list.forEach(item => {
+                        if (item.NAME.indexOf(keyword) != -1) {
+                            arr.push(item);
+                        }
+                    });
+                    return arr;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
