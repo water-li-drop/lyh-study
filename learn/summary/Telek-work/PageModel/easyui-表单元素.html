@@ -70,6 +70,17 @@
             background: url("checked.jpg")no-repeat center;
             background-size: 100% 100%;
         }
+        /* 文件上传框 */
+        
+        input[type='file'] {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 156px;
+            height: 43px;
+            background-color: aquamarine;
+            cursor: pointer;
+        }
     </style>
 
 </head>
@@ -98,6 +109,10 @@
                 <label for="">单选框:</label>
                 <input type="radio" id="" name="radio" value="radio1"><span>radio1</span>
                 <input type="radio" id="" name="radio" value="radio2"><span>radio2</span>
+            </div>
+            <div class="input-div f-left">
+                <label for="">文件框:</label>
+                <input type="file" id="">
             </div>
         </div>
     </section>
