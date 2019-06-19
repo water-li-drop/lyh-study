@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  some()
+        //  “存在”的意思，当数组中至少有一个元素调用判定函数返回true，它就返回true；当且仅当数值中所有元素调用判定函数都返回false，它才返回false
+        // 三个参数：数组元素、元素的索引和数组本身。
+        var arr = [1, 2, 3, 4, 5, 4, 32, 1];
+        console.log("" + arr);
+        var arrTemp = arr.some(function(item, index, array) {
+            console.log(item + "-" + index + "-" + array);
+            console.log(array);
+        });
+        console.log(arrTemp);
+        var arrTemp2 = arr.some(function(item, index, array) {
+            return item > 1;
+        });
+        console.log(arrTemp2);
+    </script>
+</body>
+
+</html>

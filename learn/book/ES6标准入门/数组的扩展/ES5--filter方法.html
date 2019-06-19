@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // filter()方法返回的数组元素是调用数组的一个子集。传递的函数是用来逻辑判定的：该函数返回true或false。如果返回值是true，那么传递给判定函数的元素就是这个子集的成员，它将被加到一个作为返回值的数组中。
+        var a = [5, 4, 3, 2, 1]
+        var smallvalues = a.filter(function(x) {
+            return x < 3
+        });
+        console.log(smallvalues); // [2, 1]
+        var everyother = a.filter(function(x, i) {
+            // x 为每个元素
+            // i 为改元素的下标
+            return i % 2 == 0
+        });
+        console.log(everyother); // [5, 3, 1]
+    </script>
+</body>
+
+</html>

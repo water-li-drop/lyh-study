@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>every方法</title>
+</head>
+
+<body>
+
+    <script>
+        // 严格模式
+        'use strict'
+        // every()
+        // “针对所有”的意思，当且仅当针对数组中所有元素调用判定函数都返回true，它才返回true,三个参数：数组元素、元素的索引和数组本身。
+
+        var arr = [1, 2, 3, 4, 5, 4, 32, 1];
+        console.log("" + arr);
+        var arrTemp = arr.every(function(item, index, array) {
+            console.log(item + "-" + index + "-" + array);
+            console.log(array);
+        });
+        console.log(arrTemp);
+        var arrTemp2 = arr.every(function(item, index, array) {
+            return item > 1;
+        });
+        console.log(arrTemp2);
+    </script>
+</body>
+
+</html>

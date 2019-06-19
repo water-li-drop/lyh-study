@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // forEach()方法从头至尾遍历数组，为每个元素调用指定的函数。三个参数：数组元素、元素的索引和数组本身。
+        var arr = [21, 32, 43, 54, 545, 5, 532, 21, 43];
+        var sum = 0
+        arr.forEach(function(val) {
+            sum += val
+        })
+        console.log(sum);
+        arr.forEach(function(v, i, a) {
+            a[i] = v + 1
+        })
+        console.log(arr);
+    </script>
+</body>
+
+</html>
