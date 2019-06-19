@@ -1,0 +1,13 @@
+ALTER TABLE  OUTSIDE_PROJ_INFO DROP 	(					
+		OUTSIDE_KY_REPLY_NUM		,--	可研批复文号 	
+		OUTSIDE_KY_REPLY_TIME		,--	可研批复时间 	
+		OUTSIDE_KYREP_UNIT_CODE		,--	可研批复单位编码 	
+		OUTSIDE_KYREP_UNIT_NAME		,--	可研批复单位名称 	
+		OUTSIDE_KY_RUN_INV		    ,--	可研批复投资_动态投资 	
+		OUTSIDE_KY_STATIC_INV		,--	可研批复投资_静态投资 	
+		OUTSIDE_APPR_FILE_NUM		,--	核准文件文号 	
+		OUTSIDE_APPR_UNIT_CODE		,--	核准单位编码 	
+		OUTSIDE_APPR_UNIT_NAME		,--	核准单位名称 	
+		OUTSIDE_APPR_TIME			,--	核准时间 	
+		OUTSIDE_ACT_PRODU_TIME		 --	外部供电工程实际投产时间 	
+	);

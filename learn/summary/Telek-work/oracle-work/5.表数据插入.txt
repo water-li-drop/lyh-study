@@ -1,0 +1,13 @@
+insert into classinfo(classid,classname) values(01,'测试一班');
+insert into classinfo(classid,classname) values(02,'测试二班');
+insert into classinfo(classid,classname) values(03,'测试三班');
+insert into classinfo(classid,classname) values(04,'测试四班');
+
+commit;
+
+--commit  是一次性提交到数据库保存，不commit就不会真正存储到数据库中。
+--rollback 是回滚操作，代表的意思就是不commit就可以回滚到上一次操作
+简写:
+insert into studentinfo values(2,'李四','男',18,'1325655563','南昌',2);
+insert into studentinfo values(3,'王五','男','25','13855223322','深圳',3);
+insert into studentinfo values(4,'丽丽','女','23','13256232236','新疆',4);

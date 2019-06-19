@@ -1,0 +1,13 @@
+alter table OUTSIDE_PROJ_INFO  add		(				
+	ky_plan_starttime	 	varchar	(	50	),
+	ky_plan_endtime	 	    varchar	(	50	),
+	ky_real_starttime	 	varchar	(	50	),
+	ky_real_endtime	 	    varchar	(	50	),
+	ky_wenhao	 	        varchar	(	50	),
+	ky_dt_ztz		        varchar	(	50	)
+	
+);						
+comment on column OUTSIDE_PROJ_INFO.	ky_plan_starttime	 is '	可研批复计划开始时间	';		
+comment on column OUTSIDE_PROJ_INFO.	ky_plan_endtime	     is '	可研批复计划结束时间	';		
+comment on column OUTSIDE_PROJ_INFO.	ky_real_starttime	 is '	可研批复实际开始时间	';		
+comment on column OUTSIDE_PROJ_INFO.	ky_real_endtime	     is '	可研批复实际结束时间	';	

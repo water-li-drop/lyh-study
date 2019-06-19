@@ -1,0 +1,7 @@
+--删除表中的数据  关键字 delete from 表名 where 筛选条件
+--删除张山的数据
+delete from studentinfo where studentid=1;
+commit;
+
+--commit  是一次性提交到数据库保存，不commit就不会真正存储到数据库中。
+--rollback 是回滚操作，代表的意思就是不commit就可以回滚到上一次操作
