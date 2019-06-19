@@ -43,7 +43,7 @@
                     <tr v-for='item in search(keyword)'>
                         <td>{{item.ID}}</td>
                         <td>{{item.NAME}}</td>
-                        <td>{{item.TIME}}</td>
+                        <td>{{item.TIME | timeFilter}}</td>
                         <td><a href="#" @click.prevent="del(item.ID)">{{item.OP}}</a></td>
                     </tr>
 
@@ -59,13 +59,18 @@
 
     <script src="vue.js"></script>
     <script>
+        Vue.filter("timeFilter", function(value) {
+            var date = new Date(value);
+            return date.getFullYear() + "-" + (Number(date.getMonth()) + 1) + "-" + date.getDate();
+        });
+
         new Vue({
             el: '#app',
             data: {
                 list: [{
                     ID: 1,
                     NAME: "li",
-                    TIME: "",
+                    TIME: new Date(),
                     OP: "删除"
                 }],
                 ID: "",
@@ -100,12 +105,12 @@
                     // });
                     // return arr;
 
-                    var newList = this.list.filter(item => {
+                    return this.list.filter(item => {
                         if (item.NAME.includes(keyword)) {
                             return item;
                         }
                     });
-                    return newList;
+
                 }
             }
         });
