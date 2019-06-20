@@ -20,7 +20,7 @@
             </div>
             <div>
                 <label for="">NAME:</label>
-                <input type="text" name="" id="" v-model="NAME">
+                <input type="text" name="" id="" v-model="NAME" @keyup='add'>
 
             </div>
             <div>
@@ -61,7 +61,7 @@
     <script>
         Vue.filter("timeFilter", function(value) {
             var date = new Date(value);
-            return date.getFullYear() + "-" + (Number(date.getMonth()) + 1) + "-" + date.getDate();
+            return date.getFullYear() + "-" + String(Number(date.getMonth()) + 1).padStart(2, '0') + "-" + date.getDate();
         });
 
         new Vue({
