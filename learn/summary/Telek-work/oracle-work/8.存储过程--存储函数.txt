@@ -1,0 +1,73 @@
+1.存储过程和存储函数
+    指存储在数据库中供所有用户程序调用的子程序叫存储过程、存储函数。
+    存储过程和存储函数的区别？
+    存储函数：可以通过return 语句返回函数值。
+    存储过程：不能
+    除此之外我们可以认为他们是完全一样的。
+
+2.存储过程
+    (1)创建存储过程
+        用create procedure命令简历存储过程。
+        语法：
+        create [or replace] procedure 过程名（参数列表）
+        as
+         --PLSQL子程序体；
+        begin
+            sql语句;
+        end;  
+
+        示例:
+            create or replace procedure queryEmpInfo(eno in number,
+                                         pname out varchar2,
+                                         psal  out number,
+                                         pjob  out varchar2)
+            as 
+            begin
+            select ename,sal,empjob into pname,psal,pjob from emp where empno=eno;
+            end;
+
+    (2)调用存储过程
+        1.exec 过程名
+        2.begin
+                过程名；
+                过程名；
+          end;
+
+    (3)查询创建的存储过程
+        select * from user_procedures where object_type='PROCEDURE'--(PROCEDURE)一定要大写,小写会报错
+
+    (4)删除存储过程
+        drop procedure 过程名
+3.存储函数
+`   函数（function）为一命名的存储程序，可带参数，并返回一计算值。函数和过程的结构类似，但必须有一个return子句，用于返回函数值。函数说明要指定函数名、结果值的类型，以及参数类型等。
+    (1)存储函数语法：
+        create[or replace] functiion 函数名（参数列表） 
+        return  函数值类型
+        as
+        --PLSQL子程序体；
+        begin
+            sql语句;
+        end;  
+    (2)drop function  —— 删除存储函数
+        注:drop procedure if exists test;
+    (3)查询存储函数
+    
+
+
+4.过程和函数中的in 和out
+    一般来讲，过程和函数的区别在于函数可以有一个返回值；而过程没有返回值。
+    但过程和函数都可以通过out指定一个或多个输出参数，我们可以利用out参数，在过程和函数中实现返回多个值。
+    什么时候用存储过程/存储函数？
+    原则（不是必须的）：
+        如果只有一个返回值，用存储函数；否则，就用存储过程。
+
+    存储过程(PROCEDURE)和函数(FUNCTION)的区别：
+        1.存储过程必须单独调用，函数可以在查询语句中直接调用
+        2.存储过程是通过参数返回的，有一个甚至多个，函数有且只有一个返回值
+        3.存储过程一般是用来完成特定的数据操作(如DDL语句等)，函数一般情况下是用来计算并返回一个计算结果的。
+        4.对于无参函数的定义和调用都可以没有圆括号。但无参存储过程需要有
+        5.存储过程的标识符是procedure，函数的标识符是function
+    相同点：
+        1.都有in，out，in out三种参数，都可以使用缺省值。
+        2.可以使用名称表示法和位置表示法。
+        3.存储在数据库中，在代码块中调用。

@@ -1,0 +1,77 @@
+MERGE语句是Oracle9i新增的语法，用来合并UPDATE和INSERT语句。
+通过MERGE语句，根据一张表或子查询的连接条件对另外一张表进行查询，连接条件匹配上的进行UPDATE，无法匹配的执行INSERT。
+这个语法仅需要一次全表扫描就完成了全部工作，执行效率要高于INSERT＋UPDATE。
+
+ 
+
+//表1
+create table subs(msid number(9),
+                  ms_type char(1),
+                 areacode number(3)
+                 );
+//表2
+create table acct(msid number(9),
+                  bill_month number(6),
+                  areacode   number(3),
+                  fee        number(8,2) default 0.00);
+                  
+//测试数据                  
+insert into subs values(905310001,0,531);
+insert into subs values(905320001,1,532);
+insert into subs values(905330001,2,533);
+commit;
+一.下面先演示一下merge的基本功能
+1) matched 和not matched clauses 同时使用
+   merge into acct a 
+     using subs b on (a.msid=b.msid)
+   when MATCHED then
+        update set a.areacode=b.areacode
+   when NOT MATCHED then
+        insert(msid,bill_month,areacode) 
+        values(b.msid,'200702',b.areacode);
+2) 只有not matched clause,也就是只插入不更新
+   merge into acct a 
+     using subs b on (a.msid=b.msid)   
+   when NOT MATCHED then
+        insert(msid,bill_month,areacode) 
+        values(b.msid,'200702',b.areacode);
+3) 只有matched clause, 也就是只更新不插入
+   merge into acct a 
+     using subs b on (a.msid=b.msid)
+   when MATCHED then
+        update set a.areacode=b.areacode
+
+二.10g中增强一：条件操作
+1) matched 和not matched clauses 同时使用
+   merge into acct a 
+     using subs b on (a.msid=b.msid)     
+   when MATCHED then
+        update set a.areacode=b.areacode
+        where b.ms_type=0
+   when NOT MATCHED then
+        insert(msid,bill_month,areacode) 
+        values(b.msid,'200702',b.areacode)
+        where b.ms_type=0;
+2) 只有not matched clause,也就是只插入不更新
+   merge into acct a 
+     using subs b on (a.msid=b.msid)   
+   when NOT MATCHED then
+        insert(msid,bill_month,areacode) 
+        values(b.msid,'200702',b.areacode)
+        where b.ms_type=0;
+3) 只有matched clause, 也就是只更新不插入
+   merge into acct a 
+     using subs b on (a.msid=b.msid)
+   when MATCHED then
+        update set a.areacode=b.areacode
+        where b.ms_type=0;
+三.10g中增强二：删除操作
+merge into acct a 
+     using subs b on (a.msid=b.msid)
+   when MATCHED then
+        update set a.areacode=b.areacode        
+        delete where (b.ms_type!=0);
+
+注意:
+1.MERGE语句的UPDATE不能修改用于连接的列，否则会报错(on 后面的条件列就是联接)
+2.using 后面可以是(SELECT msid ,areacode FROM subs GROUP by msid )
