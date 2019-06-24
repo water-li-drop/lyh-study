@@ -1,0 +1,32 @@
+1.SELECT transportation_license_id,
+     LISTAGG( to_char(Item_Category_Name), ',') WITHIN GROUP(ORDER BY Item_Category_Name) AS employees
+      FROM ( select distinct transportation_license_id, item_category_name from mb1_Transport_License_list  ) group by transportation_license_id
+
+(1)select distinct transportation_license_id, item_category_name from mb1_Transport_Lincense_list ; 
+    -- 对需要做合并处理的数据源数据进行去重处理，如果实际要求不需要去重处理，这里可以直接改为  表名，（例如：  from  mb1_Transport_Lincense_list）进行查询
+(2)LISTAGG( to_char(Item_Category_Name), ',') WITHIN GROUP(ORDER BY Item_Category_Name)  
+    -- 将 Item_Category_Name 列的内容以", "进行分割合并、排序；
+(3)to_char(Item_Category_Name) 
+    -- to_char(列名)  解决使用聚合函数 LISTAGG 进行查询后，对查询结果乱码问题进行转码处理；
+
+2.简单示例
+
+(1)创建示例表
+create table DEMO
+(
+  id   NUMBER,
+  name VARCHAR2(20),
+  nums NUMBER
+);
+insert into demo values(1, '苹果', 1000);
+insert into demo values(1, '鸭梨', 2000);
+insert into demo values(1, '香蕉', 4000);
+insert into demo values(2, '橘子', 5000);
+insert into demo values(3, '西瓜', 3000);
+insert into demo values(4, '葡萄', 3500);
+insert into demo values(5, '芒果', 4200);
+
+(2)查询sql
+    SELECT ID, listagg(NAME, ',') within group(ORDER BY ID) AS NAMES
+    FROM DEMO T 
+    GROUP BY ID

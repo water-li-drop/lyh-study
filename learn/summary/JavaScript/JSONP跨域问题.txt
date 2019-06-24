@@ -1,0 +1,70 @@
+1.jsonp介绍
+    Jsonp(JSON with Padding) 是 json 的一种"使用模式"，可以跨域读取数据。
+    为什么我们从不同的域（网站）访问数据需要一个特殊的技术(JSONP )呢？这是因为同源策略。
+    同源策略，它是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。
+
+2.什么是同源策略
+    两个页面地址中的协议、域名和端口号一致，则表示同源。
+
+    例如该地址 https://www.google.com 和以下地址对比
+
+    地址	                            同源	            原因
+    http://www.google.com	            否              	协议不一致
+    https://google.com	                否	                域名不一致
+    https://www.google.com:81	        否	                端口号不一致
+    https://www.google.com/a/s.html	    是	                协议，域名和端口号都一致
+
+    同源策略的限制：
+
+        (1)存储在浏览器中的数据，如localStroage、Cookie和IndexedDB不能通过脚本跨域访问
+        (2)不能通过脚本操作不同域下的DOM
+        (3)不能通过ajax请求不同域的数据
+
+3.为什么要同源策略
+    设置同源限制主要是为了安全，如果没有同源限制存在浏览器中的cookie等其他数据可以任意读取，不同域下DOM任意操作，Ajax任意请求的话如果浏览了恶意网站那么就会泄漏这些隐私数据。
+    Cookie一般用来保存登录状态。在登录一个银行网站后此时浏览器中就保存了登录的状态，同时浏览了恶意网站，这时Cookie的信息没有同源限制的话恶意网站就可以获取这些Cookie信息来达到不为人知的目的。
+    如果可以操作不同域下的DOM可以用如下方式完成盗取信息。在自己的网站上嵌入一个iframe地址设置成银行地址，然后让iframe全屏显示，当你一不小心上当了输入你账号密码，我就可以通过DOM操作获取到输入的信息。
+    Ajax的限制同Cookie，如果带上Cookie去跨域访问接口就可以通过程序的验证被认为身份是合法的。
+    既然瞥见危害一角自然要严加防范，限制非同源操作。
+
+4.JSONP实现跨域请求
+(1)JS
+    <script type="text/javascript">
+        // 得到航班信息查询结果后的回调函数
+        var flightHandler = function(data){
+            alert('你查询的航班结果是：票价 ' + data.price + ' 元，' + '余票 ' + data.tickets + ' 张。');
+        };
+        // 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）
+        var url = "http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&callback=flightHandler";
+        // 创建script标签，设置其属性
+        var script = document.createElement('script');
+        script.setAttribute('src', url);
+        // 把script标签加入head，此时调用开始
+        document.getElementsByTagName('head')[0].appendChild(script); 
+    </script>
+(2)JQuery
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#btn").click(function(){
+
+                $.ajax({
+                    async : true,
+                    url : "https://api.douban.com/v2/book/search",
+                    type : "GET",
+                    dataType : "jsonp", // 返回的数据类型，设置为JSONP方式
+                    jsonp : 'callback', //指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback
+                    jsonpCallback: 'handleResponse', //设置回调函数名
+                    data : {
+                        q : "javascript", 
+                        count : 1
+                    }, 
+                    success: function(response, status, xhr){
+                        console.log('状态为：' + status + ',状态是：' + xhr.statusText);
+                        console.log(response);
+                    }
+                });
+            });
+        });
+    </script>
+
