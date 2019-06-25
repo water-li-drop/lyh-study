@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖放事件</title>
+</head>
+
+<body>
+    <div id="testks" style="width: 200px;height: 200px;background-color: cadetblue"></div>
+
+    <div id="testgc" style="width: 200px;height: 200px;background-color: chartreuse;margin-top: 200px;"></div>
+
+    <div id="testzz" style="width: 200px;height: 200px;background-color: cornflowerblue;margin-left: 200px;"></div>
+
+    <script>
+        // 二. 拖放的相关事件：
+        // 事件	                产生事件的元素	            描述
+        // dragstart	        被拖放的元素	            开始拖放操作
+        // drag	                被拖放的元素	            拖放过程中
+        // dragenter	        拖放过程中鼠标经过的元素	 被拖放元素开始进入本元素的范围内
+        // dragover	            拖放过程中鼠标经过的元素	 被拖放元素正在本元素范围内移动
+        // dragleave	        拖放过程中鼠标经过的元素	 被拖放元素离开本元素的范围
+        // drop	                拖放的目标元素	            有其他元素被拖放到本元素中
+        // dragend	            拖放的对象元素	            拖放操作结束
+
+        // 三. DataTransfer对象的属性与方法
+        // 3.1 DataTransfer对象的属性：
+        // 属性	            描述
+        // dropEffect	    表示拖放操作的视觉效果，允许对其进行值的设定。该效果必须在用effectAllowed属性指定的允许的视觉效果范围内，允许指定的值有：none、copy、link、move。
+        // effectAllowed	用来指定当元素被拖放时所允许的视觉效果。可以指定的值有：none、copy、copyLink、copyMove、link、linkMove、all、uninitialize。
+        // files	        返回表示被拖拽文件的 FileList。
+        // types	        存入数据的MIME类型。如果任意文件被拖拽，那么其中一个类型将会是字符串”Files”。
+        // 方法	                                                描述
+        // void setData(DOMString format, DOMString data)	    向DataTransfer对象存入数据。
+        // DOMString getData(DOMString data)	                读取DataTransfer对象中的数据。
+        // void clearData(DOMString format)	                    清除DataTransfer对象中的数据。如果省略参数format，则清除全部数据。
+        // void setDragImage(Element image, long x, long y)	    用img元素来设置拖放图标。
+
+        var testCs = document.getElementById('testks');
+        var testgcCs = document.getElementById('testgc');
+        var testzzCs = document.getElementById('testzz');
+        testCs.draggable = true;
+        testCs.ondragstart = function(event) {
+            console.log('开始拖放操作');
+            console.log(event);
+        };
+        // testCs.ondrag = function(event) {
+        //     console.log('拖放过程中');
+        //     console.log(event);
+        // };
+
+        testgcCs.ondragenter = function(event) {
+            console.log('拖放进入本元素中');
+            console.log(event);
+        };
+        // testgcCs.ondragover = function(event) {
+        //     console.log('拖放在本元素中移动');
+        //     console.log(event);
+        // };
+        testgcCs.ondragleave = function(event) {
+            console.log('拖放离开本元素');
+            console.log(event);
+        };
+
+        testzzCs.ondrop = function(event) {
+            console.log('拖放进目标元素');
+            console.log(event);
+        };
+        testCs.ondragend = function(event) {
+            console.log('拖放元素结束');
+            console.log(event);
+        };
+    </script>
+
+</body>
+
+</html>

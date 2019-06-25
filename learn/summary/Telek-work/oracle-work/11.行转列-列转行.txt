@@ -1,0 +1,102 @@
+1.多行转字符串
+    这个比较简单，用||或concat函数可以实现
+    例:
+        (1)select concat(id,username) str from app_user
+        (2)select id||username str from app_user
+
+2.字符串转多列
+    实际上就是拆分字符串的问题，可以使用 substr、instr、regexp_substr函数方式
+
+3.wm_concat函数
+首先让我们来看看这个神奇的函数wm_concat(列名),该函数可以把列值以","号分隔起来,并显示成一行,接下来上例子,看看这个神奇的函数如何应用准备测试数据
+
+create table test(id number,name varchar2(20));
+insert into test values(1,'a');
+insert into test values(1,'b');
+insert into test values(1,'c');
+insert into test values(2,'d');
+insert into test values(2,'e');
+
+效果1 : 行转列 ，默认逗号隔开
+
+    select wm_concat(name) name from test;
+
+效果2: 把结果里的逗号替换成"|"
+
+    select replace(wm_concat(name),',','|') from test;
+
+4.Oracle 11g 行列互换 pivot 和 unpivot 说明
+    (1)pivot 列转行
+
+        create table demo(id int,name varchar(20),nums int);  ---- 创建表
+        insert into demo values(1, '苹果', 1000);
+        insert into demo values(2, '苹果', 2000);
+        insert into demo values(3, '苹果', 4000);
+        insert into demo values(4, '橘子', 5000);
+        insert into demo values(5, '橘子', 3000);
+        insert into demo values(6, '葡萄', 3500);
+        insert into demo values(7, '芒果', 4200);
+        insert into demo values(8, '芒果', 5500);
+
+        分组查询 （当然这是不符合查询一条数据的要求的）
+
+        select name, sum(nums) nums from demo group by name
+
+        行转列查询
+
+        select * from (select name, nums from demo) pivot (sum(nums) for name in ('苹果' 苹果, '橘子', '葡萄', '芒果'));
+
+        注意： pivot（聚合函数 for 列名 in（类型）） ，其中 in('') 中可以指定别名，in中还可以指定子查询，比如 select distinct code from customers
+
+        当然也可以不使用pivot函数，等同于下列语句，只是代码比较长，容易理解 
+
+        select *
+        from (select sum(nums) 苹果 from demo where name = '苹果'),
+            (select sum(nums) 橘子 from demo where name = '橘子'),
+            (select sum(nums) 葡萄 from demo where name = '葡萄'),
+            (select sum(nums) 芒果 from demo where name = '芒果');
+
+
+    (2)unpivot 行转列
+        顾名思义就是将多列转换成1列中去
+        案例：现在有一个水果表，记录了4个季度的销售数量，现在要将每种水果的每个季度的销售情况用多行数据展示。
+
+        创建表和数据
+
+        create table Fruit(id int,name varchar(20), Q1 int, Q2 int, Q3 int, Q4 int);
+        insert into Fruit values(1,'苹果',1000,2000,3300,5000);
+        insert into Fruit values(2,'橘子',3000,3000,3200,1500);
+        insert into Fruit values(3,'香蕉',2500,3500,2200,2500);
+        insert into Fruit values(4,'葡萄',1500,2500,1200,3500);
+        select * from Fruit
+
+        列转行查询
+
+        select id , name, jidu, xiaoshou from Fruit unpivot (xiaoshou for jidu in (q1, q2, q3, q4) )
+
+        注意： unpivot没有聚合函数，xiaoshou、jidu字段也是临时的变量
+
+        同样不使用unpivot也可以实现同样的效果，只是sql语句会很长，而且执行速度效率也没有前者高
+
+        select id, name ,'Q1' jidu, (select q1 from fruit where id=f.id) xiaoshou from Fruit f
+        union
+        select id, name ,'Q2' jidu, (select q2 from fruit where id=f.id) xiaoshou from Fruit f
+        union
+        select id, name ,'Q3' jidu, (select q3 from fruit where id=f.id) xiaoshou from Fruit f
+        union
+        select id, name ,'Q4' jidu, (select q4 from fruit where id=f.id) xiaoshou from Fruit f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

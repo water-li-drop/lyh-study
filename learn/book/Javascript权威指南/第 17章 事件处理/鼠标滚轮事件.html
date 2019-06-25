@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标滚轮事件</title>
+</head>
+
+<body>
+
+    <div id="nihao" style="width: 200px;height: 200px;background-color: burlywood;"></div>
+
+
+    <script>
+        var divTest = document.getElementById("nihao");
+        var width = 240;
+        divTest.onwheel = function(event) {
+            console.log(divTest.style.width);
+            width = width + (event.wheelDelta);
+            if (width <= 0) {
+                width = 120;
+            }
+            divTest.style.width = width + 'px';
+            console.log(event);
+
+        }
+    </script>
+
+
+</body>
+
+</html>
