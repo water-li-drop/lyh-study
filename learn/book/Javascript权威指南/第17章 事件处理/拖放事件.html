@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    <div id="testks" style="width: 200px;height: 200px;background-color: cadetblue"></div>
+    <div id="testks" style="width: 50px;height: 50px;background-color: cadetblue">666666</div>
 
-    <div id="testgc" style="width: 200px;height: 200px;background-color: chartreuse;margin-top: 200px;"></div>
+    <div id="testgc" style="width: 50px;height: 50px;background-color: chartreuse;margin-top: 100px;"></div>
 
-    <div id="testzz" style="width: 200px;height: 200px;background-color: cornflowerblue;margin-left: 200px;"></div>
+    <div id="testzz" style="width: 50px;height: 50px;background-color: cornflowerblue;margin-top: 100px;"></div>
 
     <script>
         // 二. 拖放的相关事件：
@@ -45,6 +45,7 @@
         testCs.draggable = true;
         testCs.ondragstart = function(event) {
             console.log('开始拖放操作');
+            event.dataTransfer.setData("Text", event.target.id);
             console.log(event);
         };
         // testCs.ondrag = function(event) {
@@ -56,17 +57,20 @@
             console.log('拖放进入本元素中');
             console.log(event);
         };
-        // testgcCs.ondragover = function(event) {
-        //     console.log('拖放在本元素中移动');
-        //     console.log(event);
-        // };
+        testgcCs.ondragover = function(event) {
+            event.preventDefault();
+            // console.log('拖放在本元素中移动');
+            // console.log(event);
+        };
         testgcCs.ondragleave = function(event) {
             console.log('拖放离开本元素');
             console.log(event);
         };
 
-        testzzCs.ondrop = function(event) {
+        testgcCs.ondrop = function(event) {
             console.log('拖放进目标元素');
+            var data = event.dataTransfer.getData("Text");
+            event.target.appendChild(document.getElementById(data));
             console.log(event);
         };
         testCs.ondragend = function(event) {

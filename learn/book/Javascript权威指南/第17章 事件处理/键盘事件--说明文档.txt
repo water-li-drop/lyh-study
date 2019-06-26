@@ -1,0 +1,29 @@
+1.事件定义：
+    KeyDown：在控件有焦点的情况下按下键时发生。
+    KeyPress：在控件有焦点的情况下按下键时发生。(下面会说和KeyDown 的区别)
+    KeyUp：在控件有焦点的情况下释放键时发生。
+
+2.键盘事件的顺序
+
+　　一个控件上可能出现3个与键盘相关的事件，下面是这些事件发生的常规顺序：
+        用户按“a”键，该键将被预处理和调度，同时会触发KeyDown事件。
+        用户按住“a”键，该键将被预处理和调度，同时会触发KeyPress事件。
+        用户松开“a”键，该键将被预处理和调度，同时会触发KeyUp事件。
+　　但是KeyDown触发后，不一定触发KeyUp，当KeyDown 按下后，拖动鼠标，则不会触发KeyUp事件。
+
+3.KeyPress 和KeyDown 、KeyUp之间的区别
+
+    KeyPress主要用来捕获数字(注意：包括Shift+数字的符号)、字母（注意：包括大小写）、小键盘等除了F1-12、SHIFT、Alt、Ctrl、Insert、Home、PgUp、Delete、End、PgDn、ScrollLock、Pause、NumLock、{菜单键}、{开始键}和方向键外的ANSI字符
+    KeyDown 和KeyUp 通常可以捕获键盘除了PrScrn所有按键(这里不讨论特殊键盘的特殊键）
+    KeyPress 只能捕获单个字符
+    KeyDown 和KeyUp 可以捕获组合键。
+    KeyPress 可以捕获单个字符的大小写
+    KeyDown和KeyUp 对于单个字符捕获的KeyValue 都是一个值，也就是不能判断单个字符的大小写。
+    KeyPress 不区分小键盘和主键盘的数字字符。
+    KeyDown 和KeyUp 区分小键盘和主键盘的数字字符。
+    其中PrScrn 按键KeyPress、KeyDown和KeyUp 都不能捕获。
+
+
+总结：keyup适用于文本框的数据输入和同步，以及数据的获取；keydown 与 keypress更适用于通过键盘控制页面功能的实现(如回车事件)。
+
+

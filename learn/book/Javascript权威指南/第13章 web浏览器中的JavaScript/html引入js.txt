@@ -1,0 +1,13 @@
+HTML文档中嵌入JavaScript代码的4种方法:
+1.内联,放置在<script></script>标签对之间
+2.放置在由<script>标签的src属性指定的外部文件中
+3.放置在HTML事件处理程序中,该事件处理程序由onclick或onmouseover这样的HTML属性值指定.
+4.放在一个URL里,这个URL使用特殊的"javascript:"协议.
+
+注意:在URL后面跟一个javascript:协议限定符,是另一种嵌入JavaScript代码到客户端的方式.
+这种特殊的协议类型指定URL内容为任意字符串,这个字符串是隔开,会被javascript解释器运行的javascript代码.
+它被当做单独的一行代码对待,这意味着语句之间必须用分号隔开.而//注释必须用/**/注释代替.javascript:URL能识别的"资源"是转换成字符号串的执行代码返回值.如果代码返回undefined,那么这个资源是没有内容的.
+javascript:URL可以用在可以使用常规URL的任何地方:比如<a>标记的href属性,<form>的action属性,甚至window的open()方法的参数
+
+例:<a href="javascript:new Date().toLocaleTimeString();">What time is it?</a>
+<a href=""javascript:void window.open(''http://www.baidu.com'');">打开一个窗口</a>

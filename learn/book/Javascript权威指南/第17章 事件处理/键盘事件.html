@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘事件</title>
+</head>
+
+<body>
+    <input type="text" name="" id="test">
+    <script>
+        var testObject = document.getElementById('test');
+        testObject.onkeyup = function(event) {
+            // var event = event || window.event;
+            // console.log("键盘抬起")
+            // console.log(event.key + '-' + event.code + '-' + event.keyCode + '-' + event.type + '-' + event.which);
+        }
+        window.onkeydown = function(event) {
+            // var event = event || window.event;
+            // console.log("键盘按下")
+            // console.log(event);
+            console.log(event.key);
+        }
+        testObject.onkeypress = function(event) {
+            console.log(event);
+        }
+    </script>
+
+</body>
+
+</html>

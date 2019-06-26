@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标事件</title>
+</head>
+
+<body>
+    <button id="mouseEvent" value="">点击按钮</button>
+    <div id="mouseDiv" style="width: 100px;height: 100px;background-color: black;"></div>
+    <script>
+        var MouseE = document.getElementById('mouseEvent');
+        var MouseD = document.getElementById('mouseDiv');
+        var Dwidth = 100;
+        var clickTimeId;
+        // 1.click事件-----高级事件,当用户按下并释放鼠标按键或其它方式"激活"元素时触发
+        MouseE.onclick = function(event) {
+            // 取消上次延时未执行的方法
+            if (clickTimeId) {
+                clearTimeout(clickTimeId);
+            }
+            //执行延时
+            clickTimeId = setTimeout(function() {
+                //此处为单击事件要执行的代码
+                MouseD.style.backgroundColor = 'red';
+                Dwidth += 5;
+                MouseD.style.width = Dwidth + 'px';
+                console.log("单击");
+            }, 300);
+        }
+
+        //3.dblclick事件-----当用户双击鼠标时触发
+        MouseE.ondblclick = function(event) {
+            var event = event || window.event;
+
+            // 取消上次延时未执行的方法
+            clearTimeout(clickTimeId);
+            MouseD.style.backgroundColor = 'yellow';
+            Dwidth -= 5;
+            MouseD.style.width = Dwidth + 'px';
+            console.log("双击");
+        }
+
+
+        // 鼠标单击事件与鼠标双击事件的执行顺序
+        //     click：mousedown -- mouseup -- click 
+        // 　　dblclick：mousedown -- mouseup -- click -- mousedown -- mouseup -- click -- dblclick
+
+        //4.mousedown事件-----当按下鼠标按键的时候触发
+        MouseD.addEventListener("mousedown", function(event) {
+            MouseD.style.backgroundColor = 'yellow';
+            Dwidth -= 5;
+            MouseD.style.width = Dwidth + 'px';
+        });
+        //5.mouseup事件-----当放开鼠标按键的时候触发
+        MouseD.addEventListener("mouseup", function(event) {
+            MouseD.style.backgroundColor = 'red';
+            Dwidth += 5;
+            MouseD.style.width = Dwidth + 'px';
+        });
+        // 6.mousemove事件-----当鼠标移动时触发
+        MouseD.addEventListener("mousemove", function(event) {
+            // MouseD.style.backgroundColor = 'red';
+            // Dwidth += 5;
+            // MouseD.style.width = Dwidth + 'px';
+        });
+        // 7. mouseover事件-----当鼠标进入元素时触发
+        MouseD.addEventListener("mouseover", function(event) {
+            MouseD.style.backgroundColor = 'yellow';
+            Dwidth += 5;
+            MouseD.style.width = Dwidth + 'px';
+        });
+        // 8. mouseout事件-----当鼠标进入元素时触发
+        MouseD.addEventListener("mouseout", function(event) {
+            MouseD.style.backgroundColor = 'red';
+            Dwidth += 5;
+            MouseD.style.width = Dwidth + 'px';
+        });
+    </script>
+</body>
+
+</html>
