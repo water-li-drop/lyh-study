@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ceshi</title>
+</head>
+
+<body>
+    <!-- 1.defer属性使得浏览器延迟脚本的执行,直到文档的载入和解析的完成,并可以操作. -->
+    <!-- 2.async属性使得浏览器可以尽快得执行脚本,而不用在下载脚本时阻塞文档解析. -->
+    <!-- 如果<script>标签同时有两个属性,同时支持两者的浏览器会遵从async属性并忽略defer属性 -->
+    <!-- 注意,延迟的脚本会按它们在文档里的出现顺序执行.而异步脚本在它们载入以后执行,这意味着它们可能会无序执行 -->
+
+
+
+    <script defer src="js执行顺序.js"></script>
+    <script>
+        console.log("ceshi--行间")
+    </script>
+    <div id="ceshi">
+
+    </div>
+
+</body>
+
+</html>
