@@ -24,12 +24,27 @@ server.on('request', function(req, res) {
         var scriptStr = `${query.callback}(${JSON.stringify(data)})`
             // res.end 发送给 客户端， 客户端去把 这个 字符串，当作JS代码去解析执行
         res.end(scriptStr)
+    } else if (url === '/getAllList') {
+        var dataList = [{
+            id: 4,
+            name: '本田',
+            ctime: new Date()
+        }, {
+            id: 5,
+            name: '大众',
+            ctime: new Date()
+        }, {
+            id: 6,
+            name: '宝马',
+            ctime: new Date()
+        }]
+        res.end(JSON.stringify(dataList));
     } else {
         res.end('404')
     }
 })
 
 // 指定端口号并启动服务器监听
-server.listen(3000, function() {
-    console.log('server listen at http://127.0.0.1:3000')
+server.listen(3300, function() {
+    console.log('server listen at http://127.0.0.1:3300')
 })
