@@ -1,0 +1,8 @@
+本地jar包:
+		D:\workspace\PIS\uap-client\WebContent\WEB-INF\repository\application\plugins
+远程jar包:
+		http://192.168.112.96:8080/sguap-server/environment/platform/Version2.0.0
+Tomcat运行内存:
+		-Xms1024m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=256m
+SVN地址:
+		https://192.168.112.96/svn/PISDev
