@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>layui--弹框</title>
+    <link rel="stylesheet" href="../node_modules/layui-src/dist/css/layui.css" ">
+</head>
+
+<body>
+
+        <!-- <div id="formbd ">
+            <input type="text " name=" " id=" ">
+            <input type="datetime " name=" " id=" ">
+        </div> -->
+    
+        <script src="../node_modules/layui-src/dist/layui.js "></script>
+        <script>
+            
+            layui.use('layer', function(){
+                debugger;
+                var $ = layui.$;
+                var layer = layui.layer;
+  
+                // layer.msg('hello');
+                layer.open({
+                    type: 0, 
+                    // title:["窗口标题 ",'font-size:25px;font-weight:700;'],
+                    content: '<div id="formbd "><input type="text " name=" " id=" "><input type="datetime " name=" " id=" "></div>',
+                    // content: '弹框弹框弹框弹框弹框弹框弹框弹框弹框弹框弹框弹框弹框弹框',
+                    // content: $('#formbd'),
+                    closeBtn:'2',
+                    icon: 1,
+                    resize:false,
+                    btn: ['按钮一', '按钮二', '按钮三'], //可以无限个按钮
+                    btnAlign: 'c',
+                    shadeClose:true,
+                    yes: function(index, layero){
+                        //do something
+                        layer.close(index); //如果设定了yes回调，需进行手工关闭
+                    },
+                    cancel: function(index, layero){ 
+                        if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+                            layer.close(index)
+                        }
+                        return false; 
+                    }    
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            });
+
+
+            
+        </script>
+</body>
+
+</html>
