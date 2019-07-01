@@ -10,18 +10,20 @@
 </head>
 
 <body>
-    <table id="demo " lay-filter="test "></table>
+    <table id="demo"></table>
 
     <script src="../node_modules/layui-src/dist/layui.js "></script>
     <script>
-        layui.use('table', function() {
+        layui.use(['table', 'laypage'], function() {
             var table = layui.table;
 
             //第一个实例
             table.render({
                 elem: '#demo',
+                title: "测试表",
+                toolbar: true,
                 height: 310,
-                // page: true,//开启分页,
+
                 cols: [
                     [ //表头
                         {
@@ -34,52 +36,106 @@
                             field: 'username',
                             title: '用户名',
                             width: 80
-                        }, {
-                            field: 'sex',
-                            title: '性别',
-                            width: 80,
-                            sort: true
-                        }, {
-                            field: 'city',
-                            title: '城市',
-                            width: 80
-                        }, {
-                            field: 'sign',
-                            title: '签名',
-                            width: 177
-                        }, {
-                            field: 'experience',
-                            title: '积分',
-                            width: 80,
-                            sort: true
-                        }, {
-                            field: 'score',
-                            title: '评分',
-                            width: 80,
-                            sort: true
-                        }, {
-                            field: 'classify',
-                            title: '职业',
-                            width: 80
-                        }, {
-                            field: 'wealth',
-                            title: '财富',
-                            width: 135,
-                            sort: true
                         }
                     ]
                 ],
                 data: [{
                     'id': '1',
                     'username': '用户名',
-                    'sex': '性别',
-                    'city': '城市',
-                }]
+                    'sex': '性别'
+                }, {
+                    'id': '2',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '3',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '4',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '5',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '6',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '7',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '8',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '9',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '10',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '11',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '12',
+                    'username': '用户名',
+                    'sex': '性别'
+                }, {
+                    'id': '13',
+                    'username': '用户名',
+                    'sex': '性别'
+                }],
+                loading: true,
+                done: function(res, curr, count) {
+                    console.log(res);
+                    console.log(curr);
+                    console.log(count);
+
+                },
+                page: {
+                    count: 70 //数据总数，从服务端得到
+                        ,
+                    jump: function(obj, first) {
+                        //obj包含了当前分页的所有参数，比如：
+                        alert(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                        alert(obj.limit); //得到每页显示的条数
+
+                        //首次不执行
+                        if (!first) {
+                            //do something
+                        }
+                    }
+                },
+
             });
+            console.log(table);
+            var laypage = layui.laypage;
+            laypage.render({
+                elem: 'layui-table-page1',
+                count: 70 //数据总数，从服务端得到
+                    ,
+                jump: function(obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                    }
+                }
+            });
+
+
 
         });
     </script>
 
 </body>
-
-</html>

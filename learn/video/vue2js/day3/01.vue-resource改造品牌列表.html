@@ -80,7 +80,7 @@
 
                 },
                 getAllList() {
-                    this.$http.get('http://192.168.0.114:3300/getAllList').then(function(result) {
+                    this.$http.get('http://127.0.0.1:3300/getAllList').then(function(result) {
                         console.log(result);
                         this.list = result;
                     });
