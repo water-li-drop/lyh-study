@@ -1,0 +1,120 @@
+/* 全局样式 */
+
+html,
+body {
+    margin: 0;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    min-width: 1000px;
+}
+
+
+/* 左浮动 */
+
+.f-left {
+    float: left;
+}
+
+
+/* 右浮动 */
+
+.f-right {
+    float: right;
+}
+
+
+/* 清除浮动 */
+
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    content: ".";
+    height: 0
+}
+
+.clearfix {
+    *zoom: 1
+}
+
+.bg-body {
+    background-color: #FDF6E3;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.bg-brower {
+    background-color: #CBA984;
+}
+
+
+/* 搜索模块 */
+
+.search-section {
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.search-form {
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+}
+
+
+/* ajax数据加载 */
+
+.ajax-div {
+    border: #000000 solid 1px;
+    width: 270px;
+    height: 100px;
+    position: absolute;
+    top: 40px;
+    left: 110px;
+    overflow: auto;
+}
+
+.ajax-div li {
+    padding: 5px;
+    text-align: left;
+    height: 20px;
+}
+
+.ajax-div li:hover {
+    background-color: coral;
+    cursor: pointer;
+}
+
+
+/* 数据展示 */
+
+.data-section {
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 75%;
+    margin-left: 12.5%;
+    overflow: hidden;
+}
+
+.bookbox {
+    margin-top: 10px;
+}
+
+.bookimg {
+    height: 170px;
+    width: 120px;
+}
+
+.bookimg img {
+    height: 170px;
+    width: 120px;
+    border-radius: 5px;
+}
+
+.bookinfo {}

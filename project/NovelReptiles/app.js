@@ -10,16 +10,22 @@ var url = 'http://book.zongheng.com/store.html';
 // var url = 'http://pic37.nipic.com/20140113/8800276_184927469000_2.png';
 
 getData(url, function(data) {
-    // console.log(data);
-    // var html = gbk.toString(data);
-
-    var dom = new JSDOM(data);
-    // console.log(dom.window.document);
-    console.log(dom.window.document.querySelectorAll('.bookintro').innerHTML);
-    // fs.writeFile('test.html', data, (err) => {
+    // 将抓取的数据写入文件
+    // fs.appendFile('test.html', data, (err) => {
     //     if (err) throw err;
     //     console.log('文件已被保存');
     // });
+    // 编码格式转换
+    // var html = gbk.toString(data);
+    // 获取页面dom
+    var dom = new JSDOM(data);
+    var documentTemp = dom.window.document;
+    var bookNameArr = documentTemp.querySelectorAll('.bookname a');
+    var a = bookNameArr.map(function(value) {
+        return value.innerHTML;
+    });
+    console.log(a);
+    // var buffer = Buffer.from(data);
 });
 
 function getData(url, callback) {
@@ -40,33 +46,13 @@ function getData(url, callback) {
         path: myURL.pathname
     };
     var req = http.request(options, res => {
-        // console.log(res);
+        var dataTemp = '';
         if (res.statusCode == '200') {
-            var dataTemp = '';
-            var dataTempBuffer = [];
             res.on('data', (buffer) => {
-                // console.log(buffer);
-                dataTempBuffer.push(buffer);
-                dataTemp = "" + buffer;
-                // console.log(buffer);
-                console.log(dataTemp);
-
-                // fs.writeFile('test.html', chunk, (err) => {
-                //     if (err) throw err;
-                //     console.log('文件已被保存');
-                // });
+                dataTemp = dataTemp + buffer;
             });
             res.on('end', () => {
                 console.log('响应中已无数据');
-                // var dataTempP = Buffer.concat(dataTempBuffer);
-                // fs.writeFile('test.jpg', dataTempP, (err) => {
-                //     if (err) throw err;
-                // });
-
-                // fs.writeFile('test.html', dataTemp, (err) => {
-                //     if (err) throw err;
-                //     console.log('文件已被保存');
-                // });
                 callback && callback(dataTemp);
             });
         } else {
@@ -75,7 +61,7 @@ function getData(url, callback) {
         }
     });
     req.on('error', (e) => {
-        console.error(`请求遇到问题: ${e.message}`);
+        console.error("请求遇到问题:" + e.message);
     });
     req.end();
 }
