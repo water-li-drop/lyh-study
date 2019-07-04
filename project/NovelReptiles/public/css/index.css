@@ -104,6 +104,7 @@ body {
 
 .bookbox {
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .bookimg {
@@ -116,5 +117,3 @@ body {
     width: 120px;
     border-radius: 5px;
 }
-
-.bookinfo {}
