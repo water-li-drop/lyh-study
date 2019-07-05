@@ -6,17 +6,21 @@ const JSDOM = require("jsdom").JSDOM;
 // 请求链接
 var urlObj = {
     // 主页
-    "index": 'http://book.zongheng.com/store.html'
+    "index": 'http://book.zongheng.com/store.html',
+    "search": 'http://search.zongheng.com/s?keyword=',
+    'muList': 'http://book.zongheng.com/showchapter/',
+    'data': 'http://book.zongheng.com/chapter/',
 };
 
 var server = new http.Server();
 
 server.on('request', function(req, res) {
+    // console.log(req);
     // 读取静态文件 
     if (req.url == '/' || req.url.match(/.js/) || req.url.match(/.css/) || req.url.match(/.css/) || req.url.match(/.jpg/)) {
         var urlTemp = '';
         if (req.url == '/') {
-            urlTemp = './views/index.html';
+            urlTemp = './views/Index.html';
         } else if (req.url.match(/\?/)) {
             urlTemp = '.' + req.url.split('?')[0];
         } else if (req.url == ' /favicon.ico') {
@@ -31,84 +35,113 @@ server.on('request', function(req, res) {
     }
     // 首页ajax加载数据
     else if (req.url == '/getIndexData') {
+        console.log(urlObj['index']);
         getData(urlObj['index'], function(data) {
             // 获取页面dom
             var dom = new JSDOM(data);
             var documentTemp = dom.window.document;
+            var bookData = [];
+            var bookbox = documentTemp.querySelectorAll('.bookbox');
+            bookbox.forEach(function(val) {
+                var objTemp = {};
+                objTemp.bookbox_bookimg_a_href = val.querySelector('.bookimg').querySelector('a').href;
+                objTemp.bookbox_bookimg_a_img_src = val.querySelector('.bookimg').querySelector('a').querySelector('img').src;
+
+                objTemp.bookbox_bookinfo_bookname_a_href = val.querySelector('.bookinfo').querySelector('.bookname').querySelector('a').href;
+                objTemp.bookbox_bookinfo_bookname_a_innerHTML = val.querySelector('.bookinfo').querySelector('.bookname').querySelector('a').innerHTML;;
+
+                objTemp.bookbox_bookinfo_bookilnk_a0_href = val.querySelector('.bookinfo').querySelector('.bookilnk').querySelectorAll('a')[0].href;
+                objTemp.bookbox_bookinfo_bookilnk_a0_innerHTML = val.querySelector('.bookinfo').querySelector('.bookilnk').querySelectorAll('a')[0].innerHTML;
+
+                objTemp.bookbox_bookinfo_bookilnk_a1_href = val.querySelector('.bookinfo').querySelector('.bookilnk').querySelectorAll('a')[1].href;
+                objTemp.bookbox_bookinfo_bookilnk_a1_innerHTML = val.querySelector('.bookinfo').querySelector('.bookilnk').querySelectorAll('a')[1].innerHTML;
+
+                objTemp.bookbox_bookinfo_bookilnk_span0_innerHTML = val.querySelector('.bookinfo').querySelector('.bookilnk').querySelectorAll('span')[0].innerHTML;
+                objTemp.bookbox_bookinfo_bookilnk_span1_innerHTML = val.querySelector('.bookinfo').querySelector('.bookilnk').querySelectorAll('span')[1].innerHTML;
 
 
-            // <div class="bookbox fl">
-            //         <div class="bookimg">
-            //             <a href="http://book.zongheng.com/book/847660.html" target="_blank">
-            //                 <img src="http://static.zongheng.com/upload/cover/6c/b3/6cb3fd566bc7213a03f6e88e4d221c09.jpeg" alt="异能生物特攻队">
-            //             </a>
-            //         </div>
-            //         <div class="bookinfo">
-            //             <div class="bookname">
-            //                 <a href="http://book.zongheng.com/book/847660.html" target="_blank">异能生物特攻队</a>
-            //             </div>
-            //             <div class="bookilnk">
-            //                 <a href="http://home.zongheng.com/show/userInfo/50798269.html" target="_blank">子小飞</a>|
-            //                 <a href="http://www.zongheng.com/category/15.html" target="_blank">科幻游戏</a>|
-            //                 <span>
+                objTemp.bookbox_bookinfo_bookilnk_a1_href = val.querySelector('.bookinfo').querySelector('.bookilnk').querySelectorAll('a')[1].href;
+                objTemp.bookbox_bookinfo_bookilnk_a1_innerHTML = val.querySelector('.bookinfo').querySelector('.bookilnk').querySelectorAll('a')[1].innerHTML;
 
-            //                 	连载中
+                objTemp.bookbox_bookinfo_bookintro_innerHTML = val.querySelector('.bookinfo').querySelector('.bookintro').innerHTML;
 
-            //             	</span>|
-            //                 <span>
-            //                 更新时间&nbsp;&nbsp;07-04 11:55
-            //                 </span>
-            //             </div>
-            //             <div class="bookintro">程石，名副其实，是个诚实的好人，没有特别大的理想，家里住着别墅，可是祖传的写字楼租不出去了，被迫出去找工作。 一套500多平方的写字楼，租了1000元，却住进了一个异能生物，被迫与本宇宙的神签&ldquo;卖身契&rdquo;，然后获得了一辆精神不怎么正常的车，这就是故事的开端。 母亲灵魂IP的期待，越来越多的异能生物，一份不能辞职的工作，一个牛叉叉的公司前台，一个义工，一个穿越宇宙的房东&hellip;&hellip;
-            //             </div>
-            //             <div class="bookupdate">
-            //                 <a href="http://book.zongheng.com/chapter/847660/57083876.html" class="fl">最新章节：第十八章：躺在蛋里做体检</a>
-            //                 <span class="rank_d_b_time"></span>
-            //             </div>
-            //         </div>
-            //     </div>
-            var bookNameArr = documentTemp.querySelectorAll('.bookname a');
-            var a = bookNameArr.map(function(value) {
-                return value.innerHTML;
-            });
-            res.write(dataTemp);
+                objTemp.bookbox_bookinfo_bookupdate_a_href = val.querySelector('.bookinfo').querySelector('.bookupdate').querySelector('a').href;
+                objTemp.bookbox_bookinfo_bookupdate_a_innerHTML = val.querySelector('.bookinfo').querySelector('.bookupdate').querySelector('a').innerHTML;
+
+                objTemp.bookbox_bookinfo_bookupdate_span_innerHTML = val.querySelector('.bookinfo').querySelector('.bookupdate').querySelector('span').innerHTML;
+
+                bookData.push(objTemp);
+            })
+            res.write(JSON.stringify(bookData));
             res.end();
-        })
+        });
+        // 查询书籍
+    } else if (req.url.match(/\/\?bookname/)) {
+        var wd = req.url.split('=')[1];
+        console.log(urlObj['search'] + wd);
+        getData(urlObj['search'] + wd, function(data) {
+            console.log(data);
+            // 获取页面dom
+            // var dom = new JSDOM(data);
+            // var documentTemp = dom.window.document;
+            // res.write(JSON.stringify(dataObj));
+            res.end();
+        });
+        // 获取目录
+    } else if (req.url.match(/\/getmuList\?booknum/)) {
+        var wd = req.url.split('=')[1];
+        console.log(urlObj['muList'] + wd);
+        getData(urlObj['muList'] + wd, function(data) {
+            // 获取页面dom
+            var dom = new JSDOM(data);
+            var documentTemp = dom.window.document;
+            var dataObj = {};
+            dataObj.book_meta_h1 = documentTemp.querySelector('.book-meta h1').innerHTML;
 
+            dataObj.volume_list_count = documentTemp.querySelector('.volume-list .count').innerHTML;
+            dataObj.volume_list_cite = documentTemp.querySelector('.volume-list cite').innerHTML;
+
+            dataObj.chapter_list = [];
+            var Temp = documentTemp.querySelectorAll('.chapter-list li');
+            Temp.forEach(function(val) {
+                var objTemp = {};
+                objTemp.href = val.querySelector('a').href;
+                objTemp.text = val.querySelector('a').innerHTML;
+                dataObj.chapter_list.push(objTemp);
+            });
+            res.write(JSON.stringify(dataObj));
+            res.end();
+        });
+        // 获取内容
+    } else if (req.url.match(/\/getData\?bookdata/)) {
+        var wd = req.url.split('=')[1];
+        console.log(urlObj['data'] + wd);
+        getData(urlObj['data'] + wd, function(data) {
+            // 获取页面dom
+            var dom = new JSDOM(data);
+            var documentTemp = dom.window.document;
+            var dataObj = {};
+            dataObj.reader_box_title_txtbox = documentTemp.querySelector('.title_txtbox').innerHTML;
+            dataObj.reader_box_bookinfo_a = documentTemp.querySelector('.bookinfo a').innerHTML;
+            dataObj.reader_box_bookinfo_span0 = documentTemp.querySelectorAll('.bookinfo span')[0].innerHTML;
+            dataObj.reader_box_bookinfo_span1 = documentTemp.querySelectorAll('.bookinfo span')[1].innerHTML;
+            dataObj.content = documentTemp.querySelector('.reader_box .content').innerHTML;
+            res.write(JSON.stringify(dataObj));
+            res.end();
+        });
+        // 测试
+    } else if (req.url == '/test') {
+        getData('http://book.zongheng.com/showchapter/830163.html', function(data) {
+            // console.log(data);
+            fs.writeFile('test.html', data, function(err) {
+                if (err) throw err;
+                console.log('文件已被保存');
+            })
+        });
     }
 });
-server.listen(9000);
-console.log('http://127.0.0.1:9000');
-
-
-
-
-
-
-
-
-
-
-// var url = 'http://book.zongheng.com/store.html';
-
-// getData(url, function(data) {
-//     // 将抓取的数据写入文件
-//     // fs.appendFile('test.html', data, (err) => {
-//     //     if (err) throw err;
-//     //     console.log('文件已被保存');
-//     // });
-//     // 编码格式转换
-//     // var html = gbk.toString(data);
-//     // 获取页面dom
-//     var dom = new JSDOM(data);
-//     var documentTemp = dom.window.document;
-//     var bookNameArr = documentTemp.querySelectorAll('.bookname a');
-//     var a = bookNameArr.map(function(value) {
-//         return value.innerHTML;
-//     });
-//     console.log(a);
-//     // var buffer = Buffer.from(data);
-// });
+server.listen(3300);
+console.log('http://127.0.0.1:3300');
 
 
 // common---数据抓取方法
@@ -127,7 +160,7 @@ function getData(url, callback) {
     // 组装request参数
     var options = {
         hostname: myURL.hostname,
-        path: myURL.pathname
+        path: myURL.pathname,
     };
     var req = http.request(options, res => {
         var dataTemp = '';

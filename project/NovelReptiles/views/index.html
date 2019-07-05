@@ -13,7 +13,7 @@
 <body class="bg-body">
 
     <!-- 标题 -->
-    <section class="title-section bg-white">标题</section>
+    <!-- <section class="title-section bg-white">标题</section> -->
     <!-- 搜索模块 -->
     <section class="search-section bg-white">
         <!-- 搜索框 -->
@@ -21,12 +21,12 @@
             <div class="f-left">
                 <label class="layui-form-label">书名：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="bookname" placeholder="请输入书籍名称" class="layui-input" style="width: 150%;">
+                    <input type="text" name="bookname" lay-filter="serachWD" placeholder="请输入书籍名称" class="layui-input" style="width: 150%;" id="searchWD">
                 </div>
             </div>
             <div class=" f-left">
                 <div class="layui-input-block">
-                    <button class="layui-btn">搜索</button>
+                    <button class="layui-btn" id="searchBtn">搜索</button>
                 </div>
             </div>
             <!-- ajax展示 -->
@@ -47,8 +47,8 @@
     <!-- 数据展示 -->
     <section class="data-section bg-white">
 
-        <!-- 书籍信息 -->
-        <div class="bookbox bg-brower clearfix">
+        <!-- 书籍列表
+        <div class="bookbox clearfix">
             <div class="bookimg f-left">
                 <a href="" target="_blank">
                     <img src="../test.jpg" alt="异能生物特攻队">
@@ -66,73 +66,72 @@
                 </div>
                 <div class="bookintro"></div>
             </div>
+        </div> -->
+        <!-- 书籍目录 -->
+
+        <!-- <div class="book-meta">
+            <h1>黑白界限</h1>
+            <p>
+                <span><i>作者：</i><a target="_blank">了无忧</a></span>
+                <span><i>更新时间：</i>1天前</span>
+                <span><i>最新章节：</i>正文：第一百四十四章  大结局</span>
+            </p>
         </div>
-        <!-- 书籍信息 -->
-        <div class="bookbox bg-brower clearfix">
-            <div class="bookimg f-left">
-                <a href="" target="_blank">
-                    <img src="../test.jpg" alt="异能生物特攻队">
-                </a>
-            </div>
-            <div class="bookinfo f-left">
-                <div class="bookname">
-                    <a href="" target="_blank">异能生物特攻队</a>
+
+        <div class="volume-list">
+            <div>
+                <div class="volume vip-color">
+                    <div class="arrow-top arrow-box">
+                        <b class="top"><i class="arrow1"></i><i class="arrow2"></i></b>
+                    </div>
+                    <em class="v-line"></em>正文<em class="count">共143章<i>·</i>本卷共<cite>468225</cite>字</em>
                 </div>
-                <div class="bookilnk">
-                    <a href="" target="_blank">子小飞</a>|
-                    <a href="" target="_blank">科幻游戏</a>|
-                    <span> 连载中</span>|
-                    <span>更新时间&nbsp;&nbsp;07-04 11:55</span>
-                </div>
-                <div class="bookintro"></div>
+                <ul class="chapter-list clearfix">
+
+                    <li class=" col-4">
+                        <a href="http://book.zongheng.com/chapter/830163/54479935.html" target="_blank" title="第一章  凶案 字数：3410 更新时间：2019-03-18 18:14 ">第一章  凶案</a>
+                    </li>
+
+                    <li class=" col-4">
+                        <a href="http://book.zongheng.com/chapter/830163/54680939.html" target="_blank" title="第二章  虐待 字数：3514 更新时间：2019-03-19 17:19 ">第二章  虐待</a>
+                    </li>
+                    <li class=" col-4">
+                        <a href="http://book.zongheng.com/chapter/830163/54680939.html" target="_blank" title="第二章  虐待 字数：3514 更新时间：2019-03-19 17:19 ">第二章  虐待</a>
+                    </li>
+                    <li class=" col-4">
+                        <a href="http://book.zongheng.com/chapter/830163/54680939.html" target="_blank" title="第二章  虐待 字数：3514 更新时间：2019-03-19 17:19 ">第二章  虐待</a>
+                    </li>
+
+                </ul>
             </div>
-        </div>
-        <!-- 书籍信息 -->
-        <div class="bookbox bg-brower clearfix">
-            <div class="bookimg f-left">
-                <a href="" target="_blank">
-                    <img src="../test.jpg" alt="异能生物特攻队">
-                </a>
-            </div>
-            <div class="bookinfo f-left">
-                <div class="bookname">
-                    <a href="" target="_blank">异能生物特攻队</a>
+        </div> -->
+
+
+        <!-- 文字阅读 -->
+        <!-- <div class="reader_box" style="-moz-user-select:none;-webkit-user-select:none;" unselectable="on" onselectstart="return false;">
+            <div class="title">
+                <div class="iconbox">
+                    <em class=""></em>
                 </div>
-                <div class="bookilnk">
-                    <a href="" target="_blank">子小飞</a>|
-                    <a href="" target="_blank">科幻游戏</a>|
-                    <span> 连载中</span>|
-                    <span>更新时间&nbsp;&nbsp;07-04 11:55</span>
-                </div>
-                <div class="bookintro"></div>
+                <div class="title_txtbox">第六章 使用天赋</div>
             </div>
-        </div>
-        <!-- 书籍信息 -->
-        <div class="bookbox bg-brower clearfix">
-            <div class="bookimg f-left">
-                <a href="" target="_blank">
-                    <img src="../test.jpg" alt="异能生物特攻队">
-                </a>
+            <div class="bookinfo">
+                作者：<a href="http://home.zongheng.com/show/userInfo/51072766.html">花瑄冷</a>&nbsp;&nbsp;|&nbsp;&nbsp;字数：<span>2068</span>&nbsp;&nbsp;|&nbsp;&nbsp;更新时间：<span>2019-06-18 19:54:19</span>
             </div>
-            <div class="bookinfo f-left">
-                <div class="bookname">
-                    <a href="" target="_blank">异能生物特攻队</a>
-                </div>
-                <div class="bookilnk">
-                    <a href="" target="_blank">子小飞</a>|
-                    <a href="" target="_blank">科幻游戏</a>|
-                    <span> 连载中</span>|
-                    <span>更新时间&nbsp;&nbsp;07-04 11:55</span>
-                </div>
-                <div class="bookintro"></div>
+
+            <div class="reader_line"></div>
+            <div class="content" itemprop="acticleBody">
+                <p> 打开基础修炼法，第一页都会画着人体经脉图，后面的修炼需要用到，这也是防止一些人因为记不清楚穴位而胡乱修炼。</p>
+　　听着老爸的话，连吐槽的心情都没了。</p>
+                <p>　　老爸还是老爸，说的都好有道理。</p>
             </div>
-        </div>
+        </div> -->
 
     </section>
 
 
     <script src="../node_modules/layui-src/dist/layui.js"></script>
-    <script src="../public/js/index.js"></script>
+    <!-- <script src="../public/js/index.js"></script> -->
     <script>
         layui.config({
             base: '../public/js/'
