@@ -11,7 +11,6 @@ var urlObj = {
     'muList': 'http://book.zongheng.com/showchapter/',
     'data': 'http://book.zongheng.com/chapter/',
 };
-
 var server = new http.Server();
 
 server.on('request', function(req, res) {
@@ -76,11 +75,11 @@ server.on('request', function(req, res) {
             res.end();
         });
         // 查询书籍
-    } else if (req.url.match(/\/\?bookname/)) {
-        var wd = req.url.split('=')[1];
-        console.log(urlObj['search'] + wd);
-        getData(urlObj['search'] + wd, function(data) {
-            console.log(data);
+    } else if (req.url == '/getSearchData') {
+        // var wd = req.url.split('=')[1];
+        // console.log(urlObj['search'] + wd);
+        getData(urlObj['search'] + 'nihao', function(data) {
+            // console.log(data);
             // 获取页面dom
             // var dom = new JSDOM(data);
             // var documentTemp = dom.window.document;
@@ -131,12 +130,14 @@ server.on('request', function(req, res) {
         });
         // 测试
     } else if (req.url == '/test') {
-        getData('http://book.zongheng.com/showchapter/830163.html', function(data) {
-            // console.log(data);
-            fs.writeFile('test.html', data, function(err) {
-                if (err) throw err;
-                console.log('文件已被保存');
-            })
+        getData('http://search.zongheng.com/s?keyword=nihao', function(data) {
+            var dom = new JSDOM(data);
+            var documentTemp = dom.window.document;
+            console.log('---' + documentTemp.querySelector('#queryword').innerHTML + '---');
+            // fs.writeFile('test.html', data, function(err) {
+            //     if (err) throw err;
+            //     console.log('文件已被保存');
+            // })
         });
     }
 });
@@ -161,6 +162,7 @@ function getData(url, callback) {
     var options = {
         hostname: myURL.hostname,
         path: myURL.pathname,
+        Cookie: []
     };
     var req = http.request(options, res => {
         var dataTemp = '';

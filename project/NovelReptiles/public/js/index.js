@@ -11,19 +11,19 @@ layui.define('form', function(exports) {
         })
         // 查询数据加载
     $('#searchBtn').click(function() {
-        // console.log($('#searchWD').val());
-        // $.ajax({
-        //     url: 'http://127.0.0.1:3300/getSearchData?bookname =' + $('#searchWD').val(),
-        //     success: function(data) {
-        //         console.log(data);
-        //         var bookData = JSON.parse(data);
-        //         console.log(bookData);
-        //         var bookdomStr = '';
+        console.log($('#searchWD').val());
+        $.ajax({
+            url: 'http://127.0.0.1:3300/getSearchData',
+            success: function(data) {
+                console.log(data);
+                var bookData = JSON.parse(data);
+                console.log(bookData);
+                // var bookdomStr = '';
 
-        //         $('.data-section').html(bookdomStr);
-        //     }
+                // $('.data-section').html(bookdomStr);
+            }
 
-        // })
+        })
     });
     // 默认记载函数
     var morenload = function(data, callback) {
