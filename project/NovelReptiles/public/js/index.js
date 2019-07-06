@@ -4,12 +4,12 @@ layui.define('form', function(exports) {
 
     // 默认加载数据
     $.ajax({
-            url: 'http://127.0.0.1:3300/getIndexData',
-            success: function(data) {
-                morenload(data, muluFunc);
-            }
-        })
-        // 查询数据加载
+        url: 'http://127.0.0.1:3300/getIndexData',
+        success: function(data) {
+            morenload(data, muluFunc);
+        }
+    });
+    // 查询数据加载
     $('#searchBtn').click(function() {
         console.log($('#searchWD').val());
         $.ajax({
@@ -25,7 +25,7 @@ layui.define('form', function(exports) {
 
         })
     });
-    // 默认记载函数
+    // 默认加载函数
     var morenload = function(data, callback) {
             var bookData = JSON.parse(data);
             var bookdomStr = '';
@@ -58,18 +58,20 @@ layui.define('form', function(exports) {
             $('.data-section').html(bookdomStr);
             callback();
         }
-        // 查看目录函数
+        // 查看目录
     var muluFunc = function() {
-        $(".bookbox").click(function(event) {
-            var href = event.currentTarget.dataset.href;
-            $.ajax({
-                url: 'http://127.0.0.1:3300/getmuList?booknum =' + href.split('/').pop(),
-                success: function(data) {
-                    muluFunc2(data, readBook);
-                }
-            })
-        });
-    }
+            $(".bookbox").click(function(event) {
+                $('#backBtn').attr('data-href', event.currentTarget.dataset.href);
+                var href = event.currentTarget.dataset.href;
+                $.ajax({
+                    url: 'http://127.0.0.1:3300/getmuList?booknum =' + href.split('/').pop(),
+                    success: function(data) {
+                        muluFunc2(data, readBook);
+                    }
+                })
+            });
+        }
+        // 查看目录函数
     var muluFunc2 = function(data, callback) {
             var muluData = JSON.parse(data);
             var temp = '';
@@ -120,5 +122,25 @@ layui.define('form', function(exports) {
         });
     }
 
+
+    $('#backBtn').click(function() {
+        var href = event.currentTarget.dataset.href;
+        if (href.match(/book/)) {
+            $.ajax({
+                url: 'http://127.0.0.1:3300/getmuList?booknum =' + href.split('/').pop(),
+                success: function(data) {
+                    muluFunc2(data, readBook);
+                    $('#backBtn').attr('data-href', '');
+                }
+            })
+        } else {
+            $.ajax({
+                url: 'http://127.0.0.1:3300/getIndexData',
+                success: function(data) {
+                    morenload(data, muluFunc);
+                }
+            });
+        }
+    });
     exports('index', {});
 });

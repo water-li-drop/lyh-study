@@ -356,3 +356,20 @@
         text-indent: 2em;
         padding: .5em .3em;
     }
+    /* 返回按钮 */
+    
+    #backBtn {
+        position: fixed;
+        width: 100px;
+        height: 50px;
+        color: #ffffff;
+        background-color: rgb(76, 187, 150);
+        top: 521px;
+        left: 1231px;
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
