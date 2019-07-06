@@ -17,16 +17,16 @@
     <!-- 搜索模块 -->
     <section class="search-section bg-white">
         <!-- 搜索框 -->
-        <form class="layui-form search-form clearfix">
+        <div class="search-form clearfix">
             <div class="f-left">
-                <label class="layui-form-label">书名：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="bookname" lay-filter="serachWD" placeholder="请输入书籍名称" class="layui-input" style="width: 150%;" id="searchWD">
+                <label class="">书名：</label>
+                <div style="display: inline-block;">
+                    <input type="text" placeholder="请输入书籍名称" class="layui-input" style="width: 150%;" id="searchWD">
                 </div>
             </div>
-            <div class=" f-left">
-                <div class="layui-input-block">
-                    <button class="layui-btn" id="">搜索</button>
+            <div class="f-right">
+                <div>
+                    <div id="searchBtn">搜索</div>
                 </div>
             </div>
             <!-- <button id="searchBtn">搜索</button> -->
@@ -43,7 +43,7 @@
                     <li>5</li>
                 </ul>
             </div> -->
-        </form>
+        </div>
     </section>
     <!-- 数据展示 -->
     <section class="data-section bg-white">

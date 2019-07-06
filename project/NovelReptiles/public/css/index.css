@@ -59,7 +59,20 @@
     .search-form {
         position: relative;
         margin: 0 auto;
-        width: 50%;
+        width: 35%;
+    }
+    
+    #searchBtn {
+        width: 100px;
+        height: 40px;
+        color: #ffffff;
+        background-color: rgb(76, 187, 150);
+        font-size: 17px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 5px;
+        cursor: pointer;
     }
     /* ajax数据加载 */
     

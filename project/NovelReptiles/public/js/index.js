@@ -1,5 +1,4 @@
 layui.define('form', function(exports) {
-    var form = layui.form;
     var $ = layui.$;
 
     // 默认加载数据
@@ -12,18 +11,22 @@ layui.define('form', function(exports) {
     // 查询数据加载
     $('#searchBtn').click(function() {
         console.log($('#searchWD').val());
-        $.ajax({
-            url: 'http://127.0.0.1:3300/getSearchData',
-            success: function(data) {
-                console.log(data);
-                var bookData = JSON.parse(data);
-                console.log(bookData);
-                // var bookdomStr = '';
+        if ($('#searchWD').val() == '') {
+            $.ajax({
+                url: 'http://127.0.0.1:3300/getIndexData',
+                success: function(data) {
+                    morenload(data, muluFunc);
+                }
+            });
+        } else {
+            $.ajax({
+                url: 'http://127.0.0.1:3300/getSearchData?wd=' + $('#searchWD').val(),
+                success: function(data) {
+                    morenload(data, muluFunc);
+                }
 
-                // $('.data-section').html(bookdomStr);
-            }
-
-        })
+            })
+        }
     });
     // 默认加载函数
     var morenload = function(data, callback) {
@@ -141,6 +144,8 @@ layui.define('form', function(exports) {
                 }
             });
         }
-    });
+    }); 
+
+
     exports('index', {});
 });

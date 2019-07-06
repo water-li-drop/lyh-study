@@ -3,6 +3,7 @@ const fs = require('fs');
 const URL = require('url').URL;
 const gbk = require('gbk');
 const JSDOM = require("jsdom").JSDOM;
+const request = require('request');
 // 请求链接
 var urlObj = {
     // 主页
@@ -22,7 +23,7 @@ server.on('request', function(req, res) {
             urlTemp = './views/Index.html';
         } else if (req.url.match(/\?/)) {
             urlTemp = '.' + req.url.split('?')[0];
-        } else if (req.url == ' /favicon.ico') {
+        } else if (req.url == '/favicon.ico') {
             return;
         } else {
             urlTemp = "." + req.url
@@ -75,15 +76,32 @@ server.on('request', function(req, res) {
             res.end();
         });
         // 查询书籍
-    } else if (req.url == '/getSearchData') {
-        // var wd = req.url.split('=')[1];
-        // console.log(urlObj['search'] + wd);
-        getData(urlObj['search'] + 'nihao', function(data) {
-            // console.log(data);
-            // 获取页面dom
-            // var dom = new JSDOM(data);
-            // var documentTemp = dom.window.document;
-            // res.write(JSON.stringify(dataObj));
+    } else if (req.url.match(/\/getSearchData\?wd/)) {
+        var wd = req.url.split('=')[1];
+        console.log(urlObj['search'] + wd);
+        request(urlObj['search'] + wd, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                var dom = new JSDOM(body);
+                var documentTemp = dom.window.document;
+                var bookData = [];
+                var bookbox = documentTemp.querySelectorAll('.search-result-list');
+                bookbox.forEach(function(val) {
+                    var objTemp = {};
+                    objTemp.bookbox_bookimg_a_href = val.querySelector('.se-result-book').querySelector('a').href;
+                    objTemp.bookbox_bookimg_a_img_src = val.querySelector('.se-result-book').querySelector('a').querySelector('img').src;
+
+                    objTemp.bookbox_bookinfo_bookname_a_innerHTML = val.querySelector('.se-result-infos').querySelector('.tit').querySelector('a').innerHTML;;
+
+                    objTemp.bookbox_bookinfo_bookilnk_a0_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('a')[0].innerHTML;
+                    objTemp.bookbox_bookinfo_bookilnk_a1_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('a')[1].innerHTML;
+                    objTemp.bookbox_bookinfo_bookilnk_span0_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('span')[0].innerHTML;
+                    objTemp.bookbox_bookinfo_bookilnk_span1_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('span')[1].innerHTML;
+
+                    objTemp.bookbox_bookinfo_bookintro_innerHTML = val.querySelector('.se-result-infos').querySelector('p').innerHTML;
+                    bookData.push(objTemp);
+                });
+            }
+            res.write(JSON.stringify(bookData));
             res.end();
         });
         // 获取目录
@@ -130,14 +148,14 @@ server.on('request', function(req, res) {
         });
         // 测试
     } else if (req.url == '/test') {
-        getData('http://search.zongheng.com/s?keyword=nihao', function(data) {
-            var dom = new JSDOM(data);
-            var documentTemp = dom.window.document;
-            console.log('---' + documentTemp.querySelector('#queryword').innerHTML + '---');
-            // fs.writeFile('test.html', data, function(err) {
-            //     if (err) throw err;
-            //     console.log('文件已被保存');
-            // })
+        getData('http://search.zongheng.com/s?keyword=%E9%9B%AA%E4%B8%AD%E6%82%8D%E5%88%80%E8%A1%8C', function(data) {
+            // var dom = new JSDOM(data);
+            // var documentTemp = dom.window.document;
+            // console.log('---' + documentTemp.querySelector('#queryword').innerHTML + '---');
+            fs.writeFile('test.html', data, function(err) {
+                if (err) throw err;
+                console.log('文件已被保存');
+            })
         });
     }
 });
@@ -159,10 +177,17 @@ function getData(url, callback) {
         return 'url-error';
     }
     // 组装request参数
+    // var headers = {
+    //     "Connection": 'keep-alive',
+    //     "Upgrade-Insecure-Requests": 1,
+    //     "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36',
+    //     "Host": 'search.zongheng.com',
+    //     "Cookie": ['ZHID=ECB0FB6AE9BB4D084FAE5E2449F32B2D', 'zh_visitTime=1562338576314', 'sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2216bc2a2c7d8d-05671f26036333-e343166-1049088-16bc2a2c7d9b9f%22%2C%22%24device_id%22%3A%2216bc2a2c7d8d-05671f26036333-e343166-1049088-16bc2a2c7d9b9f%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%7D; v_user=%7Chttp%3A%2F%2Fsearch.zongheng.com%2Fs%3Fkeyword%3D%25E9%259B%25AA%25E4%25B8%25AD%25E6%2582%258D%25E5%2588%2580%25E8%25A1%258C%7C35413524']
+    // };
     var options = {
         hostname: myURL.hostname,
         path: myURL.pathname,
-        Cookie: []
+        // headers: headers
     };
     var req = http.request(options, res => {
         var dataTemp = '';
