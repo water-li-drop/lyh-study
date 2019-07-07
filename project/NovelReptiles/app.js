@@ -4,6 +4,9 @@ const URL = require('url').URL;
 const gbk = require('gbk');
 const JSDOM = require("jsdom").JSDOM;
 const request = require('request');
+const process = require('process');
+
+
 // 请求链接
 var urlObj = {
     // 主页
@@ -79,37 +82,14 @@ server.on('request', function(req, res) {
     } else if (req.url.match(/\/getSearchData\?wd/)) {
         var wd = req.url.split('=')[1];
         console.log(urlObj['search'] + wd);
-        request(urlObj['search'] + wd, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                var dom = new JSDOM(body);
-                var documentTemp = dom.window.document;
-                var bookData = [];
-                var bookbox = documentTemp.querySelectorAll('.search-result-list');
-                bookbox.forEach(function(val) {
-                    var objTemp = {};
-                    objTemp.bookbox_bookimg_a_href = val.querySelector('.se-result-book').querySelector('a').href;
-                    objTemp.bookbox_bookimg_a_img_src = val.querySelector('.se-result-book').querySelector('a').querySelector('img').src;
-
-                    objTemp.bookbox_bookinfo_bookname_a_innerHTML = val.querySelector('.se-result-infos').querySelector('.tit').querySelector('a').innerHTML;;
-
-                    objTemp.bookbox_bookinfo_bookilnk_a0_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('a')[0].innerHTML;
-                    objTemp.bookbox_bookinfo_bookilnk_a1_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('a')[1].innerHTML;
-                    objTemp.bookbox_bookinfo_bookilnk_span0_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('span')[0].innerHTML;
-                    objTemp.bookbox_bookinfo_bookilnk_span1_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('span')[1].innerHTML;
-
-                    objTemp.bookbox_bookinfo_bookintro_innerHTML = val.querySelector('.se-result-infos').querySelector('p').innerHTML;
-                    bookData.push(objTemp);
-                });
-            }
-            res.write(JSON.stringify(bookData));
-            res.end();
-        });
+        getSearchData(urlObj['search'] + wd, res);
         // 获取目录
     } else if (req.url.match(/\/getmuList\?booknum/)) {
         var wd = req.url.split('=')[1];
         console.log(urlObj['muList'] + wd);
         getData(urlObj['muList'] + wd, function(data) {
             // 获取页面dom
+            // console.log(data);
             var dom = new JSDOM(data);
             var documentTemp = dom.window.document;
             var dataObj = {};
@@ -162,8 +142,42 @@ server.on('request', function(req, res) {
 server.listen(3300);
 console.log('http://127.0.0.1:3300');
 
+// common---1.数据抓取方法
+function getSearchData(url, res) {
+    request(url, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            var dom = new JSDOM(body);
+            var documentTemp = dom.window.document;
+            var bookData = [];
+            var bookbox = documentTemp.querySelectorAll('.search-result-list');
+            bookbox.forEach(function(val) {
+                var objTemp = {};
+                objTemp.bookbox_bookimg_a_href = val.querySelector('.se-result-book').querySelector('a').href;
+                objTemp.bookbox_bookimg_a_img_src = val.querySelector('.se-result-book').querySelector('a').querySelector('img').src;
 
-// common---数据抓取方法
+                objTemp.bookbox_bookinfo_bookname_a_innerHTML = val.querySelector('.se-result-infos').querySelector('.tit').querySelector('a').innerHTML;;
+
+                objTemp.bookbox_bookinfo_bookilnk_a0_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('a')[0].innerHTML;
+                objTemp.bookbox_bookinfo_bookilnk_a1_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('a')[1].innerHTML;
+                objTemp.bookbox_bookinfo_bookilnk_span0_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('span')[0].innerHTML;
+                objTemp.bookbox_bookinfo_bookilnk_span1_innerHTML = val.querySelector('.se-result-infos').querySelector('.bookinfo').querySelectorAll('span')[1].innerHTML;
+
+                objTemp.bookbox_bookinfo_bookintro_innerHTML = val.querySelector('.se-result-infos').querySelector('p').innerHTML;
+                bookData.push(objTemp);
+            });
+            res.write(JSON.stringify(bookData));
+            res.end();
+        } else {
+            console.log(response.headers);
+            getSearchData(response.headers.location, res);
+        }
+    });
+}
+
+
+
+// common---2.数据抓取方法
 function getData(url, callback) {
     // url解析
     var myURL = new URL(url);
@@ -209,3 +223,9 @@ function getData(url, callback) {
     });
     req.end();
 }
+process.on('uncaughtException', function(err) {
+    //打印出错误
+    console.log(err);
+    //打印出错误的调用栈方便调试
+    console.log(err.stack);
+});

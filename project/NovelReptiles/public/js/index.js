@@ -36,7 +36,7 @@ layui.define('form', function(exports) {
                 bookdomStr = bookdomStr + '<div class="bookbox clearfix" data-href="' + obj.bookbox_bookimg_a_href + '">';
                 bookdomStr = bookdomStr + '<div class="bookimg f-left">';
                 bookdomStr = bookdomStr + '<a  target="_blank">';
-                bookdomStr = bookdomStr + '<img src="' + obj.bookbox_bookimg_a_img_src + '" alt="' + obj.bookbox_bookinfo_bookname_a_innerHTML + '">';
+                bookdomStr = bookdomStr + '<img src="' + obj.bookbox_bookimg_a_img_src + '" alt="">';
                 bookdomStr = bookdomStr + '</a>';
                 bookdomStr = bookdomStr + '</div>';
 
@@ -137,12 +137,22 @@ layui.define('form', function(exports) {
                 }
             })
         } else {
-            $.ajax({
-                url: 'http://127.0.0.1:3300/getIndexData',
-                success: function(data) {
-                    morenload(data, muluFunc);
-                }
-            });
+            if ($('#searchWD').val() == '') {
+                $.ajax({
+                    url: 'http://127.0.0.1:3300/getIndexData',
+                    success: function(data) {
+                        morenload(data, muluFunc);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: 'http://127.0.0.1:3300/getSearchData?wd=' + $('#searchWD').val(),
+                    success: function(data) {
+                        morenload(data, muluFunc);
+                    }
+
+                })
+            }
         }
     }); 
 
