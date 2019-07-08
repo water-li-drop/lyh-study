@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+
 app.get('http://www.lagou.com/lbs/getAllCitySearchLabels.json', function(req, res) {
     console.log(req);
     console.log(res);
