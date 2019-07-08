@@ -24,6 +24,8 @@ app.use('/users', usersRouter);
 
 // lyh-请求
 app.use('/hello', indexRouter);
+app.use('/user/:username', indexRouter);
+app.use('/index/:name', indexRouter);
 
 
 // catch 404 and forward to error handler
