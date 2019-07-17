@@ -6,21 +6,21 @@ var alertWin = (function() {
             '<div id="winSuccess" style="display: none">' +
             '<div class="tishi">提示</div>' +
             '<hr>' +
-            '<div id="contentSuccess"><img src="../../img/success.png" /><span id="contentS">成功！！！</span></div>' +
+            '<div id="contentSuccess"><img class="imgStyle" src="success.png" /><span id="contentS">成功！！！</span></div>' +
             '<div id="sureSuccess" style="margin-left: 125px;">确定</div>' +
             // '<div id="cancleSuccess">取消</div>' +
             '</div>' +
             '<div id="winWarning" style="display: none">' +
             '<div class="tishi">提示</div>' +
             '<hr>' +
-            '<div id="contentWarning"><img src="../../img/warning.png" /><span id="contentW">警告！！！</span></div>' +
+            '<div id="contentWarning"><img class="imgStyle" src="warning.png" /><span id="contentW">警告！！！</span></div>' +
             '<div id="sureWarning">确定</div>' +
             '<div id="cancleWarning">取消</div>' +
             '</div>' +
             '<div id="winError" style="display: none">' +
             '<div class="tishi">提示</div>' +
             '<hr>' +
-            '<div id="contentError"><img src="../../img/error.png" /><span id="contentE">错误！！！</span></div>' +
+            '<div id="contentError"><img class="imgStyle" src="error.png" /><span id="contentE">错误！！！</span></div>' +
             '<div id="sureError">确定</div>' +
             '<div id="cancleError">取消</div>' +
             '</div>'
